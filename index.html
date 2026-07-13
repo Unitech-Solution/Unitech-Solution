@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#f4f7fc" />
+  <title>UNITECH SOLUTION — Engenharia além do horizonte</title>
+  <meta name="description" content="UNITECH SOLUTION constrói infraestrutura de computação que dobra os limites do possível. Engenharia além do horizonte de eventos." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css?v=98" />
+</head>
+<body>
+  <!-- Loader -->
+  <div class="loader" id="loader">
+    <div class="loader__ring"></div>
+    <div class="loader__text">A colapsar a matéria<span class="loader__dots"></span></div>
+  </div>
+
+  <!-- WebGL Black Hole -->
+  <canvas id="bh" class="bh-canvas" aria-hidden="true"></canvas>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="vignette" aria-hidden="true"></div>
+
+  <!-- Custom cursor -->
+  <div class="cursor" id="cursor" aria-hidden="true"></div>
+  <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+
+  <!-- Progress bar -->
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
+  <!-- Nav -->
+  <header class="nav" id="nav">
+    <a class="nav__brand" href="#top" data-cursor>
+      <span class="nav__mark"></span>
+      <span class="nav__name">Unitech&nbsp;Solution</span>
+    </a>
+    <nav class="nav__links">
+      <a href="#projetos" data-cursor>Projetos</a>
+      <a href="#inovacao" data-cursor>Inovação</a>
+      <a href="#geral" data-cursor>Geral</a>
+      <a href="#manifesto" data-cursor>Manifesto</a>
+    </nav>
+    <a href="#contato" class="btn btn--ghost nav__cta" data-cursor>
+      Falar com a equipa
+      <svg viewBox="0 0 24 24" width="15" height="15"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+  </header>
+
+  <main id="top">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero__grid">
+        <div class="hero__left">
+          <h1 class="hero__type reveal"><span id="typed"></span><span class="caret" id="caret"></span></h1>
+          <form class="ask ask--enter" id="askForm" novalidate>
+            <div class="ask__glass">
+              <input class="ask__input" id="askInput" type="text" autocomplete="off"
+                     placeholder="Descreva a sua ideia…" aria-label="A sua ideia" data-cursor />
+              <button class="ask__send" type="submit" aria-label="Enviar" data-cursor data-magnetic>
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+                  <path d="M2 21l21-9L2 3v7l15 2-15 2v7z" fill="currentColor"/>
+                </svg>
+              </button>
+            </div>
+          </form>
+          <div class="ask__msg" id="askMsg" role="status"></div>
+        </div>
+
+        <div class="hero__media" aria-hidden="true">
+          <div class="media-frame" id="mediaFrame">
+            <!-- video/image slides injected by main.js (videos first, then images) -->
+            <div class="media-frame__edge"></div>
+            <div class="media-frame__wash"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- scroll-down hint (intro splash only) -->
+      <button class="scroll-hint" id="scrollHint" type="button" aria-label="Descer para o site">
+        <span class="scroll-hint__arrow">
+          <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+            <path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+      </button>
+
+      <!-- conteúdo do hero ocultado a pedido — vista limpa do buraco negro
+      <div class="hero__inner">
+        <div class="badge reveal" data-cursor>
+          <span class="badge__pulse"></span>
+          Disponível para parcerias de fronteira · 2026
+        </div>
+
+        <h1 class="hero__title">
+          <span class="line reveal">Engenharia</span>
+          <span class="line reveal"><span class="grad">além do</span></span>
+          <span class="line reveal">horizonte.</span>
+        </h1>
+
+        <p class="hero__sub reveal">
+          Na SINGULARIS construímos infraestrutura de computação que dobra os
+          limites do possível. Onde os outros encontram um muro, nós encontramos
+          uma singularidade — e fazemos dela uma plataforma.
+        </p>
+
+        <div class="hero__actions reveal">
+          <a href="#contato" class="btn btn--primary" data-cursor data-magnetic>
+            Iniciar projeto
+            <svg viewBox="0 0 24 24" width="17" height="17"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a href="#manifesto" class="btn btn--line" data-cursor>
+            Ler o manifesto
+          </a>
+        </div>
+
+        <div class="hero__scroll reveal">
+          <span class="hero__scroll-line"></span>
+          deslize para colapsar
+        </div>
+      </div>
+
+      <div class="hero__marquee" aria-hidden="true">
+        <div class="marquee__track">
+          <span>RAY-TRACING GRAVITACIONAL</span><span>•</span>
+          <span>COMPUTAÇÃO DE FRONTEIRA</span><span>•</span>
+          <span>LATÊNCIA SUB-LUZ</span><span>•</span>
+          <span>ESCALA RELATIVÍSTICA</span><span>•</span>
+          <span>RAY-TRACING GRAVITACIONAL</span><span>•</span>
+          <span>COMPUTAÇÃO DE FRONTEIRA</span><span>•</span>
+          <span>LATÊNCIA SUB-LUZ</span><span>•</span>
+          <span>ESCALA RELATIVÍSTICA</span><span>•</span>
+        </div>
+      </div>
+      -->
+    </section>
+
+    <!-- PROJETOS -->
+    <section class="section section--projects" id="projetos">
+      <div class="section__head">
+        <span class="eyebrow reveal">01 — Projetos</span>
+        <h2 class="section__title reveal">Ideias que viraram<br/>produtos reais.</h2>
+      </div>
+
+      <div class="projects">
+        <article class="project reveal" style="--accent:var(--p-kombela)" data-href="/projects/kombela/" data-cursor>
+          <div class="project__media">
+            <img src="assets/Projectos/kombela.webp" alt="Kombela" loading="lazy" />
+          </div>
+          <div class="project__body">
+            <div class="project__head">
+              <h3>Kombela</h3>
+              <span class="project__tag">Marketplace</span>
+              <svg class="project__arrow" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <p class="project__desc">Marketplace mobile que liga compradores e vendedores locais, com pagamentos e entregas num só app.</p>
+          </div>
+        </article>
+
+        <article class="project reveal" style="--accent:var(--p-uniticket)" data-href="/projects/uniticket/" data-cursor>
+          <div class="project__media">
+            <img src="assets/Projectos/uniticket.webp" alt="Uniticket" loading="lazy" />
+          </div>
+          <div class="project__body">
+            <div class="project__head">
+              <h3>Uniticket</h3>
+              <span class="project__tag">Bilhética</span>
+              <svg class="project__arrow" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <p class="project__desc">Plataforma de bilhética para eventos e transportes — compra, validação e gestão de bilhetes.</p>
+          </div>
+        </article>
+
+        <article class="project reveal" style="--accent:var(--p-yentelelo)" data-href="/projects/yentelelo/" data-cursor>
+          <div class="project__media">
+            <img src="assets/Projectos/yentelelo.webp" alt="Yentelelo" loading="lazy" />
+          </div>
+          <div class="project__body">
+            <div class="project__head">
+              <h3>Yentelelo</h3>
+              <span class="project__tag">Plataforma</span>
+              <svg class="project__arrow" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <p class="project__desc">Plataforma web de gestão com dashboards e dados em tempo real para a operação.</p>
+          </div>
+        </article>
+
+        <article class="project reveal" style="--accent:var(--p-ganhamais)" data-href="/projects/ganha-mais/" data-cursor>
+          <div class="project__media">
+            <img src="assets/Projectos/ganha+.webp" alt="Ganha+" loading="lazy" />
+          </div>
+          <div class="project__body">
+            <div class="project__head">
+              <h3>Ganha+</h3>
+              <span class="project__tag">Fintech</span>
+              <svg class="project__arrow" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <p class="project__desc">App de seguros e recompensas que premeia o utilizador a cada interação.</p>
+          </div>
+        </article>
+
+        <article class="project reveal" style="--accent:var(--p-noir)" data-href="/projects/noir/" data-cursor>
+          <div class="project__media">
+            <span class="project__ph">N</span>
+          </div>
+          <div class="project__body">
+            <div class="project__head">
+              <h3>Noir</h3>
+              <span class="project__tag">Branding &amp; Web</span>
+              <svg class="project__arrow" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <p class="project__desc">Identidade visual e presença web premium para uma marca de estilo de vida.</p>
+          </div>
+        </article>
+
+        <article class="project reveal" style="--accent:var(--p-dfscrm)" data-href="/projects/dfs-crm/" data-cursor>
+          <div class="project__media">
+            <img src="assets/Projectos/dfscrm.webp" alt="Dfs Crm" loading="lazy" />
+          </div>
+          <div class="project__body">
+            <div class="project__head">
+              <h3>Dfs Crm</h3>
+              <span class="project__tag">CRM / SaaS</span>
+              <svg class="project__arrow" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <p class="project__desc">CRM à medida para equipas de vendas — pipeline, contactos e automações.</p>
+          </div>
+        </article>
+      </div>
+
+      <div class="projects__more reveal">
+        <button class="btn btn--line" id="projectsMore" type="button" data-cursor data-magnetic>
+          Ver mais projetos
+          <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <span class="projects__moremsg" id="projectsMoreMsg" role="status"></span>
+      </div>
+    </section>
+
+    <!-- INOVAÇÃO -->
+    <section class="section section--inovacao" id="inovacao">
+      <div class="inova">
+        <div class="inova__copy">
+          <span class="eyebrow reveal">02 — Inovação</span>
+          <h2 class="section__title reveal"><span class="t1">Mais do que desenvolver software,</span><span class="hl">compreendemos o seu negócio e os seus objetivos.</span></h2>
+          <a href="#contato" class="btn btn--primary reveal" data-cursor data-magnetic>
+            Começar pela estratégia
+            <svg viewBox="0 0 24 24" width="17" height="17"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+
+        <div class="inova__stage reveal">
+          <img class="inova__hero" src="assets/imagemhero.webp" alt="" loading="lazy" />
+        </div>
+      </div>
+    </section>
+
+    <!-- GERAL -->
+    <section class="section section--geral" id="geral">
+      <div class="section__head">
+        <span class="eyebrow reveal">03 — O Que Nos Define</span>
+        <h2 class="section__title reveal">A Unitech,<br/>em factos.</h2>
+      </div>
+
+      <div class="geral-band">
+        <div class="geral__bg" aria-hidden="true">
+          <video class="geral__video" autoplay muted loop playsinline preload="auto">
+            <source src="assets/Landing/hero.mp4" type="video/mp4" />
+          </video>
+          <div class="geral__overlay"></div>
+        </div>
+        <div class="facts reveal" id="facts">
+        <article class="fact">
+          <span class="fact__num">01</span>
+          <div class="fact__body">
+            <h3 class="fact__label">Equipa</h3>
+            <p class="fact__text">Produto, design e engenharia numa só equipa.</p>
+          </div>
+        </article>
+        <article class="fact">
+          <span class="fact__num">02</span>
+          <div class="fact__body">
+            <h3 class="fact__label">Processo</h3>
+            <p class="fact__text">Do conceito ao lançamento — acompanhamos ponta a ponta.</p>
+          </div>
+        </article>
+        <article class="fact">
+          <span class="fact__num">03</span>
+          <div class="fact__body">
+            <h3 class="fact__label">Stack</h3>
+            <p class="fact__text">Apps mobile, web e plataformas à medida do negócio.</p>
+          </div>
+        </article>
+        <article class="fact">
+          <span class="fact__num">04</span>
+          <div class="fact__body">
+            <h3 class="fact__label">Método</h3>
+            <p class="fact__text">Estratégia antes da primeira linha de código.</p>
+          </div>
+        </article>
+        <article class="fact">
+          <span class="fact__num">05</span>
+          <div class="fact__body">
+            <h3 class="fact__label">Qualidade</h3>
+            <p class="fact__text">Foco obsessivo em UX e performance.</p>
+          </div>
+        </article>
+        <article class="fact">
+          <span class="fact__num">06</span>
+          <div class="fact__body">
+            <h3 class="fact__label">Relação</h3>
+            <p class="fact__text">Parceiros de longo prazo dos nossos clientes.</p>
+          </div>
+        </article>
+        <article class="fact">
+          <span class="fact__num">07</span>
+          <div class="fact__body">
+            <h3 class="fact__label">Marca</h3>
+            <p class="fact__text">Marcas e produtos construídos de raiz.</p>
+          </div>
+        </article>
+        <article class="fact">
+          <span class="fact__num">08</span>
+          <div class="fact__body">
+            <h3 class="fact__label">Missão</h3>
+            <p class="fact__text">Tecnologia ao serviço do negócio.</p>
+          </div>
+        </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- MANIFESTO -->
+    <section class="section section--manifesto" id="manifesto">
+      <span class="eyebrow reveal">04 — Manifesto</span>
+      <blockquote class="manifesto">
+        <p>
+          <span class="reveal-word">Não</span>
+          <span class="reveal-word">seguimos</span>
+          <span class="reveal-word">o</span>
+          <span class="reveal-word">futuro.</span>
+          <span class="reveal-word mblue">Ajudamos</span>
+          <span class="reveal-word mblue">a</span>
+          <span class="reveal-word mblue">construí-lo.</span>
+        </p>
+      </blockquote>
+    </section>
+
+    <!-- CTA / CONTATO -->
+    <section class="section section--cta" id="contato">
+      <div class="cta-card reveal">
+        <div class="cta-card__glow" aria-hidden="true"></div>
+        <h2 class="cta-card__title">Entre em contacto</h2>
+        <p class="cta-card__sub">Deixe o seu email e a equipa Unitech entra em contacto consigo em breve.</p>
+        <form class="cta-form" id="ctaForm" novalidate>
+          <input class="cta-form__input" type="email" placeholder="o-seu@email.com" required aria-label="Email" data-cursor />
+          <button class="btn btn--primary" type="submit" data-cursor data-magnetic>
+            Entrar em contacto
+            <svg viewBox="0 0 24 24" width="17" height="17"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </form>
+        <div class="cta-form__msg" id="ctaMsg" role="status"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="foot">
+      <div class="foot__top">
+        <a class="foot__brand" href="#top" data-cursor>
+          <span class="nav__mark"></span> Unitech Solution
+        </a>
+        <p class="foot__tag">De vida a Tua Ideia</p>
+      </div>
+
+      <div class="foot__rule"></div>
+
+      <div class="foot__grid">
+        <nav class="foot__col">
+          <h4>Unitech</h4>
+          <a href="#projetos" data-cursor>Projetos</a>
+          <a href="#inovacao" data-cursor>Inovação</a>
+          <a href="#geral" data-cursor>Geral</a>
+          <a href="#manifesto" data-cursor>Manifesto</a>
+        </nav>
+
+        <nav class="foot__col">
+          <h4>Projetos</h4>
+          <a href="/projects/kombela/" data-cursor>Kombela</a>
+          <a href="/projects/uniticket/" data-cursor>Uniticket</a>
+          <a href="/projects/yentelelo/" data-cursor>Yentelelo</a>
+          <a href="/projects/ganha-mais/" data-cursor>Ganha+</a>
+        </nav>
+
+        <div class="foot__col foot__col--contact">
+          <h4>Contacto</h4>
+          <a href="mailto:comercial@unitechsolution.co.mz" data-cursor>
+            <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><rect x="3.5" y="5.5" width="17" height="13" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M4 7l8 6 8-6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+            comercial@unitechsolution.co.mz
+          </a>
+          <a href="tel:+258840000000" data-cursor>
+            <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M6.5 3h3l1.5 5-2 1.4a12 12 0 005.6 5.6l1.4-2 5 1.5v3a2 2 0 01-2 2A17 17 0 014.5 5a2 2 0 012-2z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+            +258 84 000 0000
+          </a>
+          <span class="foot__loc">
+            <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M12 21s7-6 7-11a7 7 0 10-14 0c0 5 7 11 7 11z" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="10" r="2.4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+            Maputo, Moçambique
+          </span>
+        </div>
+
+        <div class="foot__col foot__col--social">
+          <h4>Siga-nos</h4>
+          <div class="foot__social">
+            <a aria-label="LinkedIn" href="#" data-cursor><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 11-.02 5 2.5 2.5 0 01.02-5zM3 9h4v12H3zM10 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.4c0-1.3-.02-2.96-1.8-2.96-1.8 0-2.08 1.4-2.08 2.86V21H10z"/></svg></a>
+            <a aria-label="Instagram" href="#" data-cursor><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none"/></svg></a>
+            <a aria-label="Facebook" href="#" data-cursor><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M14 9h3V6h-3c-2.2 0-4 1.8-4 4v2H7v3h3v6h3v-6h3l1-3h-4v-2a1 1 0 011-1z"/></svg></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="foot__rule"></div>
+
+      <div class="foot__bottom">
+        <span>© 2026 Unitech Solution, Todos Os Direitos Reservados</span>
+        <div class="foot__legal">
+          <a href="#" data-cursor>Termos e Condições</a>
+          <a href="#" data-cursor>Política de Privacidade</a>
+          <a href="#" data-cursor>Cookies</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============ PROPOSAL PAGE (overlay) ============ -->
+  <section class="proposal" id="proposal" aria-hidden="true">
+    <video class="proposal__video" id="proposalVideo" muted loop playsinline preload="none" aria-hidden="true"></video>
+    <div class="proposal__veil" aria-hidden="true"></div>
+
+    <header class="appbar">
+      <button class="appbar__back" id="proposalBack" type="button">
+        <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Voltar
+      </button>
+      <span class="appbar__brand"><span class="nav__mark"></span> Unitech&nbsp;Solution</span>
+    </header>
+
+    <div class="proposal__scroll">
+      <form class="proposal__panel" id="proposalForm" novalidate>
+        <div class="pform__head">
+          <span class="eyebrow">Proposta</span>
+          <h2>Vamos dar forma à sua ideia</h2>
+          <p>Preencha os detalhes e a equipa Unitech entra em contacto consigo.</p>
+        </div>
+
+        <fieldset class="pform__group">
+          <legend><span>01</span> A sua ideia</legend>
+
+          <label class="field">
+            <span class="field__label">Ideia</span>
+            <textarea class="field__input" id="pIdea" rows="3" required
+                      placeholder="Descreva a sua ideia…"></textarea>
+          </label>
+
+          <label class="field">
+            <span class="field__label">Categoria de projeto</span>
+            <select class="field__input" id="pCategory" required>
+              <option value="" disabled selected>Selecione…</option>
+              <option>Website / Landing page</option>
+              <option>Aplicação móvel</option>
+              <option>Software / SaaS</option>
+              <option>E-commerce</option>
+              <option>Branding / Design</option>
+              <option>IA / Automação</option>
+              <option>Outro</option>
+            </select>
+          </label>
+
+          <label class="field">
+            <span class="field__label">Range de investimento</span>
+            <select class="field__input" id="pBudget" required>
+              <option value="" disabled selected>Selecione…</option>
+              <option>Menos de €1.000</option>
+              <option>€1.000 – €5.000</option>
+              <option>€5.000 – €15.000</option>
+              <option>€15.000 – €50.000</option>
+              <option>Mais de €50.000</option>
+              <option>Ainda a definir</option>
+            </select>
+          </label>
+        </fieldset>
+
+        <fieldset class="pform__group">
+          <legend><span>02</span> Contacto</legend>
+
+          <div class="field-row">
+            <label class="field">
+              <span class="field__label">Email</span>
+              <input class="field__input" id="pEmail" type="email" required
+                     placeholder="o-seu@email.com" autocomplete="email" />
+            </label>
+            <label class="field">
+              <span class="field__label">Número de telefone</span>
+              <div class="phone">
+                <select class="field__input phone__code" id="pCountry" aria-label="Indicativo do país"></select>
+                <input class="field__input phone__num" id="pPhone" type="tel" required
+                       placeholder="900 000 000" autocomplete="tel" />
+              </div>
+            </label>
+          </div>
+
+          <div class="checks">
+            <span class="field__label">Preferência de contacto</span>
+            <label class="check"><input type="checkbox" id="pWhats" /> <span>Tenho WhatsApp neste número</span></label>
+            <label class="check"><input type="checkbox" id="pCallOnly" /> <span>Prefiro apenas chamada</span></label>
+          </div>
+        </fieldset>
+
+        <button class="btn btn--primary pform__submit" type="submit">
+          Enviar proposta
+          <svg viewBox="0 0 24 24" width="17" height="17"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="pform__msg" id="proposalMsg" role="status"></div>
+      </form>
+    </div>
+  </section>
+
+  <!-- floating idea button (appears when the hero field scrolls away) -->
+  <button class="idea-fab" id="ideaFab" type="button" aria-label="Descreva a sua ideia" data-cursor>
+    <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M2 21l21-9L2 3v7l15 2-15 2v7z" fill="currentColor"/></svg>
+  </button>
+
+  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
+  <script src="blackhole.js?v=98"></script>
+  <script src="main.js?v=98"></script>
+</body>
+</html>
