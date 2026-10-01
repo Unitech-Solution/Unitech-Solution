@@ -9,7 +9,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=98" />
+  <link rel="icon" type="image/png" href="assets/unitech-logo.png" />
+  <link rel="stylesheet" href="styles.css?v=109" />
 </head>
 <body>
   <!-- Loader -->
@@ -68,12 +69,90 @@
           <div class="ask__msg" id="askMsg" role="status"></div>
         </div>
 
-        <div class="hero__media" aria-hidden="true">
-          <div class="media-frame" id="mediaFrame">
+        <div class="hero__media">
+          <!-- vídeo: só no ecrã de abertura (modo cinema, como fundo) -->
+          <div class="media-frame" id="mediaFrame" aria-hidden="true">
             <!-- video/image slides injected by main.js (videos first, then images) -->
             <div class="media-frame__edge"></div>
             <div class="media-frame__wash"></div>
           </div>
+
+          <!-- serviços: cartões empilhados que passam sozinhos (services.js) -->
+          <section class="hero-services" id="heroServices" aria-labelledby="hsTitle">
+            <header class="hs__top">
+              <h2 class="hs__eyebrow" id="hsTitle">O que fazemos</h2>
+              <p class="hs__count" aria-hidden="true"><span id="hsCurrent">01</span> / 05</p>
+            </header>
+            <div class="hs__stage" aria-live="polite">
+              <article class="hs-card is-active">
+                <div class="hs-card__inner">
+                  <p class="hs-card__index"><span class="hs-card__num">01</span><span class="hs-card__phase">Software</span></p>
+                  <div class="hs-card__body">
+                    <h3 class="hs-card__name">Desenvolvimento de software</h3>
+                    <p class="hs-card__text">Sistemas de gestão, aplicativos mobile e soluções sob medida.</p>
+                    <ul class="hs-card__tags"><li>Sistemas de gestão</li><li>Aplicativos mobile</li><li>Soluções sob medida</li></ul>
+                  </div>
+                </div>
+                <span class="hs-card__ghost" aria-hidden="true">01</span>
+                <div class="hs-card__shade" aria-hidden="true"></div>
+              </article>
+              <article class="hs-card">
+                <div class="hs-card__inner">
+                  <p class="hs-card__index"><span class="hs-card__num">02</span><span class="hs-card__phase">Infra-estrutura</span></p>
+                  <div class="hs-card__body">
+                    <h3 class="hs-card__name">Redes &amp; servidores</h3>
+                    <p class="hs-card__text">Infra-estrutura de TI segura e eficiente para o seu negócio.</p>
+                    <ul class="hs-card__tags"><li>Infra-estrutura de TI</li><li>Redes seguras</li><li>Servidores</li></ul>
+                  </div>
+                </div>
+                <span class="hs-card__ghost" aria-hidden="true">02</span>
+                <div class="hs-card__shade" aria-hidden="true"></div>
+              </article>
+              <article class="hs-card">
+                <div class="hs-card__inner">
+                  <p class="hs-card__index"><span class="hs-card__num">03</span><span class="hs-card__phase">Segurança</span></p>
+                  <div class="hs-card__body">
+                    <h3 class="hs-card__name">Segurança &amp; automação</h3>
+                    <p class="hs-card__text">Vedação eléctrica, câmaras de vigilância e motores de portão.</p>
+                    <ul class="hs-card__tags"><li>Vedação eléctrica</li><li>Câmaras de vigilância</li><li>Motores de portão</li></ul>
+                  </div>
+                </div>
+                <span class="hs-card__ghost" aria-hidden="true">03</span>
+                <div class="hs-card__shade" aria-hidden="true"></div>
+              </article>
+              <article class="hs-card">
+                <div class="hs-card__inner">
+                  <p class="hs-card__index"><span class="hs-card__num">04</span><span class="hs-card__phase">Consultoria</span></p>
+                  <div class="hs-card__body">
+                    <h3 class="hs-card__name">Consultoria em TI</h3>
+                    <p class="hs-card__text">Estratégia tecnológica e optimização de processos de negócio.</p>
+                    <ul class="hs-card__tags"><li>Estratégia tecnológica</li><li>Optimização de processos</li><li>Apoio à decisão</li></ul>
+                  </div>
+                </div>
+                <span class="hs-card__ghost" aria-hidden="true">04</span>
+                <div class="hs-card__shade" aria-hidden="true"></div>
+              </article>
+              <article class="hs-card">
+                <div class="hs-card__inner">
+                  <p class="hs-card__index"><span class="hs-card__num">05</span><span class="hs-card__phase">Web</span></p>
+                  <div class="hs-card__body">
+                    <h3 class="hs-card__name">Desenvolvimento web</h3>
+                    <p class="hs-card__text">Websites empresariais, e-commerce e blogs responsivos.</p>
+                    <ul class="hs-card__tags"><li>Websites empresariais</li><li>E-commerce</li><li>Blogs responsivos</li></ul>
+                  </div>
+                </div>
+                <span class="hs-card__ghost" aria-hidden="true">05</span>
+                <div class="hs-card__shade" aria-hidden="true"></div>
+              </article>
+            </div>
+            <ol class="hs__legend" aria-label="Escolher serviço">
+              <li><button type="button" class="is-active" data-cursor><span>01</span>Software<i class="hs__bar"></i></button></li>
+              <li><button type="button" data-cursor><span>02</span>Redes<i class="hs__bar"></i></button></li>
+              <li><button type="button" data-cursor><span>03</span>Segurança<i class="hs__bar"></i></button></li>
+              <li><button type="button" data-cursor><span>04</span>Consultoria<i class="hs__bar"></i></button></li>
+              <li><button type="button" data-cursor><span>05</span>Web<i class="hs__bar"></i></button></li>
+            </ol>
+          </section>
         </div>
       </div>
 
@@ -136,100 +215,90 @@
       -->
     </section>
 
-    <!-- PROJETOS -->
-    <section class="section section--projects" id="projetos">
-      <div class="section__head">
-        <span class="eyebrow reveal">01 — Projetos</span>
-        <h2 class="section__title reveal">Ideias que viraram<br/>produtos reais.</h2>
+    <!-- PROJETOS — carrossel 3D fixo no scroll (strip.js) -->
+    <section class="strip" id="projetos" aria-labelledby="stripTitle" data-strip-carousel>
+      <div class="strip__pin">
+        <header class="strip__head">
+          <div class="strip__head-top">
+            <h2 class="eyebrow" id="stripTitle">01 — Projetos</h2>
+            <p class="strip__progress" aria-hidden="true">
+              <span id="stripCurrent">01</span><span>/</span><span id="stripTotal">05</span>
+            </p>
+          </div>
+          <ol class="strip__legend" aria-label="Projectos em destaque">
+            <li><a href="/projects/kombela/" data-cursor><span>01</span>Kombela</a></li>
+            <li><a href="/projects/uniticket/" data-cursor><span>02</span>Uniticket</a></li>
+            <li><a href="/projects/yentelelo/" data-cursor><span>03</span>Yentelelo</a></li>
+            <li><a href="/projects/ganha-mais/" data-cursor><span>04</span>Ganha+</a></li>
+            <li><a href="/projects/dfs-crm/" data-cursor><span>05</span>DFS CRM</a></li>
+          </ol>
+        </header>
+        <div class="strip__viewport">
+          <div class="strip__rail" aria-label="5 projectos seleccionados">
+            <a class="strip-card strip-card--tall" href="/projects/kombela/" data-cursor>
+              <div class="strip-card__float">
+                <figure class="strip-card__media">
+                  <img src="assets/Projectos/destaque/kombela.png" alt="Aplicativo Kombela — ecrãs de pagamento e serviços" loading="lazy">
+                  <span class="strip-card__open">Ver projecto <i>&#8599;</i></span>
+                </figure>
+                <div class="strip-card__meta">
+                  <p><span>01</span>Kombela</p>
+                  <p>Marketplace</p>
+                </div>
+              </div>
+            </a>
+            <a class="strip-card strip-card--landscape" href="/projects/uniticket/" data-cursor>
+              <div class="strip-card__float">
+                <figure class="strip-card__media">
+                  <img src="assets/Projectos/destaque/uniticket-mockup.png" alt="Aplicativo Uniticket — compra de bilhetes de transporte" loading="lazy">
+                  <span class="strip-card__open">Ver projecto <i>&#8599;</i></span>
+                </figure>
+                <div class="strip-card__meta">
+                  <p><span>02</span>Uniticket</p>
+                  <p>Bilhética</p>
+                </div>
+              </div>
+            </a>
+            <a class="strip-card strip-card--portrait" href="/projects/yentelelo/" data-cursor>
+              <div class="strip-card__float">
+                <figure class="strip-card__media">
+                  <img src="assets/Projectos/destaque/yentelelo.png" alt="Painel administrativo Yentelelo" loading="lazy">
+                  <span class="strip-card__open">Ver projecto <i>&#8599;</i></span>
+                </figure>
+                <div class="strip-card__meta">
+                  <p><span>03</span>Yentelelo</p>
+                  <p>Plataforma</p>
+                </div>
+              </div>
+            </a>
+            <a class="strip-card strip-card--wide" href="/projects/ganha-mais/" data-cursor>
+              <div class="strip-card__float">
+                <figure class="strip-card__media">
+                  <img src="assets/Projectos/destaque/viva-sem-medo.png" alt="Aplicativo Ganha+ — seguros e recompensas" loading="lazy">
+                  <span class="strip-card__open">Ver projecto <i>&#8599;</i></span>
+                </figure>
+                <div class="strip-card__meta">
+                  <p><span>04</span>Ganha+</p>
+                  <p>Fintech</p>
+                </div>
+              </div>
+            </a>
+            <a class="strip-card strip-card--square" href="/projects/dfs-crm/" data-cursor>
+              <div class="strip-card__float">
+                <figure class="strip-card__media">
+                  <img src="assets/Projectos/destaque/dfs-crm.png" alt="DFS CRM — painel de gestão empresarial" loading="lazy">
+                  <span class="strip-card__open">Ver projecto <i>&#8599;</i></span>
+                </figure>
+                <div class="strip-card__meta">
+                  <p><span>05</span>DFS CRM</p>
+                  <p>CRM / SaaS</p>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
       </div>
-
-      <div class="projects">
-        <article class="project reveal" style="--accent:var(--p-kombela)" data-href="/projects/kombela/" data-cursor>
-          <div class="project__media">
-            <img src="assets/Projectos/kombela.webp" alt="Kombela" loading="lazy" />
-          </div>
-          <div class="project__body">
-            <div class="project__head">
-              <h3>Kombela</h3>
-              <span class="project__tag">Marketplace</span>
-              <svg class="project__arrow" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </div>
-            <p class="project__desc">Marketplace mobile que liga compradores e vendedores locais, com pagamentos e entregas num só app.</p>
-          </div>
-        </article>
-
-        <article class="project reveal" style="--accent:var(--p-uniticket)" data-href="/projects/uniticket/" data-cursor>
-          <div class="project__media">
-            <img src="assets/Projectos/uniticket.webp" alt="Uniticket" loading="lazy" />
-          </div>
-          <div class="project__body">
-            <div class="project__head">
-              <h3>Uniticket</h3>
-              <span class="project__tag">Bilhética</span>
-              <svg class="project__arrow" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </div>
-            <p class="project__desc">Plataforma de bilhética para eventos e transportes — compra, validação e gestão de bilhetes.</p>
-          </div>
-        </article>
-
-        <article class="project reveal" style="--accent:var(--p-yentelelo)" data-href="/projects/yentelelo/" data-cursor>
-          <div class="project__media">
-            <img src="assets/Projectos/yentelelo.webp" alt="Yentelelo" loading="lazy" />
-          </div>
-          <div class="project__body">
-            <div class="project__head">
-              <h3>Yentelelo</h3>
-              <span class="project__tag">Plataforma</span>
-              <svg class="project__arrow" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </div>
-            <p class="project__desc">Plataforma web de gestão com dashboards e dados em tempo real para a operação.</p>
-          </div>
-        </article>
-
-        <article class="project reveal" style="--accent:var(--p-ganhamais)" data-href="/projects/ganha-mais/" data-cursor>
-          <div class="project__media">
-            <img src="assets/Projectos/ganha+.webp" alt="Ganha+" loading="lazy" />
-          </div>
-          <div class="project__body">
-            <div class="project__head">
-              <h3>Ganha+</h3>
-              <span class="project__tag">Fintech</span>
-              <svg class="project__arrow" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </div>
-            <p class="project__desc">App de seguros e recompensas que premeia o utilizador a cada interação.</p>
-          </div>
-        </article>
-
-        <article class="project reveal" style="--accent:var(--p-noir)" data-href="/projects/noir/" data-cursor>
-          <div class="project__media">
-            <span class="project__ph">N</span>
-          </div>
-          <div class="project__body">
-            <div class="project__head">
-              <h3>Noir</h3>
-              <span class="project__tag">Branding &amp; Web</span>
-              <svg class="project__arrow" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </div>
-            <p class="project__desc">Identidade visual e presença web premium para uma marca de estilo de vida.</p>
-          </div>
-        </article>
-
-        <article class="project reveal" style="--accent:var(--p-dfscrm)" data-href="/projects/dfs-crm/" data-cursor>
-          <div class="project__media">
-            <img src="assets/Projectos/dfscrm.webp" alt="Dfs Crm" loading="lazy" />
-          </div>
-          <div class="project__body">
-            <div class="project__head">
-              <h3>Dfs Crm</h3>
-              <span class="project__tag">CRM / SaaS</span>
-              <svg class="project__arrow" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </div>
-            <p class="project__desc">CRM à medida para equipas de vendas — pipeline, contactos e automações.</p>
-          </div>
-        </article>
-      </div>
-
-      <div class="projects__more reveal">
+      <div class="strip__foot">
         <button class="btn btn--line" id="projectsMore" type="button" data-cursor data-magnetic>
           Ver mais projetos
           <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -238,11 +307,97 @@
       </div>
     </section>
 
+    <!-- COMO TRABALHAMOS — cartões empilhados no scroll (process.js) -->
+    <section class="process" id="metodologia" aria-labelledby="processTitle">
+      <div class="process__head">
+        <div class="process__head-top">
+          <span class="eyebrow">02 — Como trabalhamos</span>
+          <p class="process__promise">Um processo claro, do primeiro contacto à entrega final.</p>
+        </div>
+        <h2 class="process__title" id="processTitle">
+          <span class="process__title-serif">A</span>
+          <span class="process__title-main">Metodologia</span>
+        </h2>
+        <div class="process__head-bottom">
+          <p class="process__sub"><span>Quatro etapas.</span> <em>Sem atalhos.</em></p>
+          <p class="process__scroll" aria-hidden="true">Continue a percorrer <span>&#8595;</span></p>
+        </div>
+        <ol class="process__legend" aria-label="As etapas da metodologia">
+          <li><span>01</span>Ouvir</li>
+          <li><span>02</span>Desenhar</li>
+          <li><span>03</span>Construir</li>
+          <li><span>04</span>Entregar</li>
+        </ol>
+      </div>
+      <div class="process__cards" id="processCards">
+        <article class="process-card">
+          <div class="process-card__shade" aria-hidden="true"></div>
+          <div class="process-card__inner">
+            <p class="process-card__index"><span class="process-card__num">01</span><span class="process-card__phase">Imersão</span></p>
+            <div class="process-card__body">
+              <h3 class="process-card__name">Ouvir</h3>
+              <p class="process-card__text">Mergulhamos no seu negócio, nos seus clientes e nos seus desafios. Não desenhamos nada sem perceber primeiro o que o torna diferente.</p>
+              <p class="process-card__meta">Briefing &#183; Levantamento &#183; Auditoria</p>
+            </div>
+            <div class="process-card__visual">
+              <div class="process-card__visual-img" style="background-image:url('assets/Metodologia/ouvir.jpg')"></div>
+            </div>
+            <span class="process-card__ghost" aria-hidden="true">01</span>
+          </div>
+        </article>
+        <article class="process-card">
+          <div class="process-card__shade" aria-hidden="true"></div>
+          <div class="process-card__inner">
+            <p class="process-card__index"><span class="process-card__num">02</span><span class="process-card__phase">Direcção</span></p>
+            <div class="process-card__body">
+              <h3 class="process-card__name">Desenhar</h3>
+              <p class="process-card__text">Definimos a arquitectura certa para a solução — seja um software, uma rede ou um sistema de segurança — antes de escrever a primeira linha de código.</p>
+              <p class="process-card__meta">Arquitectura &#183; Planeamento &#183; Protótipos</p>
+            </div>
+            <div class="process-card__visual">
+              <div class="process-card__visual-img" style="background-image:url('assets/Metodologia/desenhar.jpg')"></div>
+            </div>
+            <span class="process-card__ghost" aria-hidden="true">02</span>
+          </div>
+        </article>
+        <article class="process-card">
+          <div class="process-card__shade" aria-hidden="true"></div>
+          <div class="process-card__inner">
+            <p class="process-card__index"><span class="process-card__num">03</span><span class="process-card__phase">Produção</span></p>
+            <div class="process-card__body">
+              <h3 class="process-card__name">Construir</h3>
+              <p class="process-card__text">Desenvolvemos e implementamos com tecnologias robustas: do código à instalação física de redes, câmaras e automatismos.</p>
+              <p class="process-card__meta">Desenvolvimento &#183; Infraestrutura &#183; Testes</p>
+            </div>
+            <div class="process-card__visual">
+              <div class="process-card__visual-img" style="background-image:url('assets/Metodologia/construir.jpg')"></div>
+            </div>
+            <span class="process-card__ghost" aria-hidden="true">03</span>
+          </div>
+        </article>
+        <article class="process-card">
+          <div class="process-card__shade" aria-hidden="true"></div>
+          <div class="process-card__inner">
+            <p class="process-card__index"><span class="process-card__num">04</span><span class="process-card__phase">Lançamento</span></p>
+            <div class="process-card__body">
+              <h3 class="process-card__name">Entregar</h3>
+              <p class="process-card__text">Colocamos a solução em produção, formamos a sua equipa e continuamos disponíveis para suporte técnico e evolução contínua.</p>
+              <p class="process-card__meta">Implementação &#183; Formação &#183; Suporte</p>
+            </div>
+            <div class="process-card__visual">
+              <div class="process-card__visual-img" style="background-image:url('assets/Metodologia/entregar.jpg')"></div>
+            </div>
+            <span class="process-card__ghost" aria-hidden="true">04</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
     <!-- INOVAÇÃO -->
     <section class="section section--inovacao" id="inovacao">
       <div class="inova">
         <div class="inova__copy">
-          <span class="eyebrow reveal">02 — Inovação</span>
+          <span class="eyebrow reveal">03 — Inovação</span>
           <h2 class="section__title reveal"><span class="t1">Mais do que desenvolver software,</span><span class="hl">compreendemos o seu negócio e os seus objetivos.</span></h2>
           <a href="#contato" class="btn btn--primary reveal" data-cursor data-magnetic>
             Começar pela estratégia
@@ -259,7 +414,7 @@
     <!-- GERAL -->
     <section class="section section--geral" id="geral">
       <div class="section__head">
-        <span class="eyebrow reveal">03 — O Que Nos Define</span>
+        <span class="eyebrow reveal">04 — O Que Nos Define</span>
         <h2 class="section__title reveal">A Unitech,<br/>em factos.</h2>
       </div>
 
@@ -333,7 +488,7 @@
 
     <!-- MANIFESTO -->
     <section class="section section--manifesto" id="manifesto">
-      <span class="eyebrow reveal">04 — Manifesto</span>
+      <span class="eyebrow reveal">05 — Manifesto</span>
       <blockquote class="manifesto">
         <p>
           <span class="reveal-word">Não</span>
@@ -532,7 +687,12 @@
 
   <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
   <script src="blackhole.js?v=98"></script>
   <script src="main.js?v=98"></script>
+  <script src="strip.js?v=5"></script>
+  <script src="process.js?v=1"></script>
+  <script src="services.js?v=1"></script>
 </body>
 </html>
