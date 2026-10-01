@@ -12,9 +12,10 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:ital,wght@0,400;0,500;0,700;0,800;1,400;1,500&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:ital,wght@0,400;0,500;0,700;0,800;1,400;1,500&family=Plus+Jakarta+Sans:wght@500;600;700&family=Sora:wght@600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="hero-uns.css">
   <script>document.documentElement.classList.add('js');</script>
 </head>
 
@@ -32,17 +33,24 @@
     <div class="preloader__curtain" id="preloaderCurtain"></div>
   </div>
 
-  <header class="nav" id="nav">
+  <!-- Nav bar ported from unitechsolution.web.app (styles in hero-uns.css); burger + mobile menu are this site's -->
+  <header class="nav nav--uns" id="nav">
     <a class="nav__brand" href="#main-content" aria-label="Unitech Solution, voltar ao topo">
-      <img class="nav__mark-logo" src="assets/img/logo.png" alt="Unitech Solution">
+      <span class="nav__mark"></span>
+      <span class="nav__name">Unitech&nbsp;Solution</span>
     </a>
     <nav class="nav__links" aria-label="Navegação principal">
       <a href="#projetos">Projectos</a>
+      <a href="#inovacao">Inovação</a>
       <a href="#servicos">Serviços</a>
-      <a href="#sobre">Sobre</a>
+      <a href="#empresa">Sobre</a>
     </nav>
-    <a class="nav__cta" href="#contacto">
-      <span class="nav__cta-dot"></span>Iniciar um projecto
+    <a class="nav__cta btn btn--primary" href="#contacto">
+      Falar com a equipa
+      <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true">
+        <path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+          stroke-linejoin="round" />
+      </svg>
     </a>
     <button class="nav__burger" id="navBurger" type="button" aria-label="Abrir menu" aria-expanded="false"
       aria-controls="mobileMenu">
@@ -54,9 +62,10 @@
     <p class="mnav__label">(Menu)</p>
     <nav class="mnav__links" aria-label="Navegação móvel">
       <a href="#projetos" style="--i:0"><i>01</i>Projectos</a>
-      <a href="#servicos" style="--i:1"><i>02</i>Serviços</a>
-      <a href="#sobre" style="--i:2"><i>03</i>Sobre</a>
-      <a href="#contacto" style="--i:3"><i>04</i>Iniciar um projecto</a>
+      <a href="#inovacao" style="--i:1"><i>02</i>Inovação</a>
+      <a href="#servicos" style="--i:2"><i>03</i>Serviços</a>
+      <a href="#empresa" style="--i:3"><i>04</i>Sobre</a>
+      <a href="#contacto" style="--i:4"><i>05</i>Falar com a equipa</a>
     </nav>
     <p class="mnav__foot">
       <span>Unitech Solution &#183; Maputo, Moçambique</span>
@@ -65,78 +74,100 @@
   </div>
 
   <main id="main-content" role="main">
-    <section class="hero" id="hero">
-      <canvas class="hero__canvas" id="logoCanvas" aria-hidden="true"></canvas>
-      <div class="hero__inner">
-        <h1 class="hero__title">
-          <span class="sr-only">Unitech Solution — tecnologia, software e segurança em Maputo, Moçambique</span>
-          <span class="hero__line hero__line--grotesk" data-split>Where wisdom</span>
-          <span class="hero__line hero__line--serif" data-split>meets innovation</span>
-        </h1>
-        <div class="hero__aside">
-          <p class="hero__desc" data-reveal>
-            Bem-vindo à Unitech Solution: a sua empresa de tecnologia em Moçambique, com foco em Machine Learning e
-            Inteligência Artificial. Software, redes, segurança e consultoria — tudo sob o mesmo teto.
-          </p>
-          <ul class="hero__index">
-            <li><a href="#projetos"><i>01</i>Uniticket</a></li>
-            <li><a href="#projetos"><i>02</i>Unitech Workflow</a></li>
-            <li><a href="#projetos"><i>03</i>Malachi Plant Identifier</a></li>
-          </ul>
+    <!-- First slide ported from unitechsolution.web.app (see hero-uns.css / hero-uns.js) -->
+    <section class="uhero" id="hero">
+      <div class="uhero__grid">
+        <div class="uhero__left">
+          <h1 class="uhero__type"><span class="sr-only">Unitech Solution — tecnologia, software e segurança em Maputo, Moçambique. </span><span id="typed"></span><span class="caret" id="caret"></span></h1>
+          <form class="ask ask--enter" id="askForm" novalidate>
+            <div class="ask__glass">
+              <input class="ask__input" id="askInput" type="text" autocomplete="off"
+                placeholder="Descreva a sua ideia…" aria-label="A sua ideia">
+              <button class="ask__send" type="submit" aria-label="Enviar">
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+                  <path d="M2 21l21-9L2 3v7l15 2-15 2v7z" fill="currentColor" />
+                </svg>
+              </button>
+            </div>
+          </form>
+          <div class="ask__msg" id="askMsg" role="status"></div>
+        </div>
+
+        <div class="uhero__media">
+          <!-- Same card as the Serviços panel; hero-uns.js cycles it through the services list -->
+          <div class="hero-services" id="heroServices">
+          <div class="hero-card" id="heroCard">
+            <span class="hero-card__ghost" id="heroCardGhost" aria-hidden="true">01</span>
+            <p class="hero-card__kicker"><span id="heroCardNum">01</span><span id="heroCardTotal">/ 05</span></p>
+            <div class="hero-card__swap" id="heroCardSwap">
+              <p class="hero-card__name" id="heroCardName">Desenvolvimento de software</p>
+              <ul class="hero-card__tags" id="heroCardTags">
+                <li>Sistemas de gestão</li>
+                <li>Aplicativos mobile</li>
+                <li>Soluções sob medida</li>
+              </ul>
+            </div>
+            <a class="hero-card__cta" href="#contacto">Falar connosco <i aria-hidden="true">&#8599;</i></a>
+          </div>
+          <!-- Tab bar ported from the Uns2 hero (.hs__legend): shows the time left and lets the visitor pick -->
+          <ol class="hs__legend" aria-label="Escolher serviço">
+            <li><button type="button" class="is-active"><span>01</span>Software<i class="hs__bar"></i></button></li>
+            <li><button type="button"><span>02</span>Redes<i class="hs__bar"></i></button></li>
+            <li><button type="button"><span>03</span>Segurança<i class="hs__bar"></i></button></li>
+            <li><button type="button"><span>04</span>Consultoria<i class="hs__bar"></i></button></li>
+            <li><button type="button"><span>05</span>Web<i class="hs__bar"></i></button></li>
+          </ol>
+          </div>
         </div>
       </div>
-      <div class="hero__marquee" aria-hidden="true">
-        <div class="hero__marquee-track" id="heroMarquee">
-          <span>unitech<span>solution</span></span>
-        </div>
-      </div>
+
+      <!-- scroll-down hint (intro splash only) -->
+      <button class="scroll-hint" id="scrollHint" type="button" aria-label="Descer para o site">
+        <span class="scroll-hint__arrow">
+          <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+            <path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg>
+        </span>
+      </button>
     </section>
 
-    <section class="manifesto" id="sobre">
-      <div class="manifesto__rail">
-        <p class="manifesto__label">(A empresa)</p>
-        <div class="manifesto__stats">
-          <div class="manifesto__stat" data-reveal>
-            <strong>3</strong>
-            <span>especialidades sob o mesmo teto: software, redes &amp; segurança, consultoria</span>
-          </div>
-          <div class="manifesto__stat" data-reveal>
-            <strong>100%</strong>
-            <span>soluções pensadas à medida do seu negócio</span>
-          </div>
+    <!-- Second section ported from unitechsolution.web.app (see hero-uns.css / hero-uns.js) -->
+    <section class="uns-inova" id="inovacao">
+      <div class="inova">
+        <div class="inova__copy">
+          <span class="eyebrow reveal">02 — Inovação</span>
+          <h2 class="section__title reveal"><span class="t1">Mais do que desenvolver software,</span><span
+              class="hl">compreendemos o seu negócio e os seus objetivos.</span></h2>
+          <a href="#contacto" class="btn btn--primary reveal">
+            Começar pela estratégia
+            <svg viewBox="0 0 24 24" width="17" height="17">
+              <path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+          </a>
         </div>
-      </div>
-      <div class="manifesto__body">
-        <p class="manifesto__text" id="manifestoText">
-          Solução completa em tecnologia, com foco em Machine Learning e Inteligência Artificial.
-        </p>
-        <p class="manifesto__sub" data-reveal>
-          Somos especializados em desenvolvimento de software, aplicativos mobile, montagem de redes e servidores,
-          instalação de vedação eléctrica, câmaras de segurança e motores de portão.
-        </p>
+
+        <div class="inova__stage reveal">
+          <img class="inova__hero" src="assets/img/inovacao-hero.webp" alt="" loading="lazy">
+        </div>
       </div>
     </section>
 
     <section class="strip" id="projetos" aria-labelledby="stripTitle" data-strip-carousel>
       <div class="strip__pin">
-        <header class="strip__head">
-          <p class="strip__eyebrow"><span>02</span><span>Projectos em destaque</span></p>
-          <h2 class="strip__title" id="stripTitle">
-            <span>Prova,</span>
-            <em>não promessa.</em>
-          </h2>
-          <div class="strip__intro">
-            <p>Produtos reais, que desenvolvemos do zero para resolver desafios concretos em Moçambique.</p>
-            <span aria-hidden="true">&#8600;</span>
-          </div>
+        <header class="strip__head strip__head--slim">
+          <p class="strip__eyebrow"><span>03</span><span>Projectos em destaque</span></p>
+          <h2 class="strip__lede" id="stripTitle">Produtos reais, que desenvolvemos do zero para resolver desafios
+            concretos em Moçambique.</h2>
         </header>
         <div class="strip__viewport">
           <div class="strip__rail" aria-label="14 projectos seleccionados">
-            <a class="strip-card strip-card--portrait" href="#contacto">
+            <a class="strip-card strip-card--portrait" href="https://yentelelo.com/onboarding" target="_blank" rel="noopener">
               <div class="strip-card__float">
                 <figure class="strip-card__media strip-card__media--mockup">
                   <img src="assets/img/yentelelo.png" alt="Painel administrativo Yentelelo" loading="lazy">
-                  <span class="strip-card__open">Saber mais <i>&#8599;</i></span>
+                  <span class="strip-card__open">Visitar site <i>&#8599;</i></span>
                 </figure>
                 <div class="strip-card__meta">
                   <p><span>01</span>Yentelelo</p>
@@ -144,11 +175,11 @@
                 </div>
               </div>
             </a>
-            <a class="strip-card strip-card--wide" href="#contacto">
+            <a class="strip-card strip-card--wide" href="https://eml-perfume.web.app/" target="_blank" rel="noopener">
               <div class="strip-card__float">
                 <figure class="strip-card__media strip-card__media--mockup">
                   <img src="assets/img/emll.png" alt="Website Eml" loading="lazy">
-                  <span class="strip-card__open">Saber mais <i>&#8599;</i></span>
+                  <span class="strip-card__open">Visitar site <i>&#8599;</i></span>
                 </figure>
                 <div class="strip-card__meta">
                   <p><span>02</span>Eml</p>
@@ -156,11 +187,11 @@
                 </div>
               </div>
             </a>
-            <a class="strip-card strip-card--landscape" href="#contacto">
+            <a class="strip-card strip-card--landscape" href="https://www.fmf.co.mz/" target="_blank" rel="noopener">
               <div class="strip-card__float">
                 <figure class="strip-card__media strip-card__media--mockup">
                   <img src="assets/img/fmff.png" alt="Website da Federação Moçambicana de Futebol" loading="lazy">
-                  <span class="strip-card__open">Saber mais <i>&#8599;</i></span>
+                  <span class="strip-card__open">Visitar site <i>&#8599;</i></span>
                 </figure>
                 <div class="strip-card__meta">
                   <p><span>03</span>FMF</p>
@@ -168,11 +199,11 @@
                 </div>
               </div>
             </a>
-            <a class="strip-card strip-card--square" href="#contacto">
+            <a class="strip-card strip-card--square" href="https://fundacaocantona.ong/pt/" target="_blank" rel="noopener">
               <div class="strip-card__float">
                 <figure class="strip-card__media strip-card__media--mockup">
                   <img src="assets/img/fundacao-cantona.png" alt="Website da Fundação Cantoná" loading="lazy">
-                  <span class="strip-card__open">Saber mais <i>&#8599;</i></span>
+                  <span class="strip-card__open">Visitar site <i>&#8599;</i></span>
                 </figure>
                 <div class="strip-card__meta">
                   <p><span>04</span>Fundação Cantoná</p>
@@ -180,12 +211,12 @@
                 </div>
               </div>
             </a>
-            <a class="strip-card strip-card--tall" href="#contacto">
+            <a class="strip-card strip-card--tall" href="https://kombela.co.mz/" target="_blank" rel="noopener">
               <div class="strip-card__float">
                 <figure class="strip-card__media strip-card__media--mockup">
                   <img src="assets/img/kombela.png" alt="Aplicativo Kombela — ecrãs de pagamento e serviços"
                     loading="lazy">
-                  <span class="strip-card__open">Saber mais <i>&#8599;</i></span>
+                  <span class="strip-card__open">Visitar site <i>&#8599;</i></span>
                 </figure>
                 <div class="strip-card__meta">
                   <p><span>05</span>Kombela</p>
@@ -193,11 +224,11 @@
                 </div>
               </div>
             </a>
-            <a class="strip-card strip-card--portrait" href="#contacto">
+            <a class="strip-card strip-card--portrait" href="https://proseguros.co.mz/" target="_blank" rel="noopener">
               <div class="strip-card__float">
                 <figure class="strip-card__media strip-card__media--mockup">
                   <img src="assets/img/pro-seguros.png" alt="Website Pro Seguros — seguro automóvel " loading="lazy">
-                  <span class="strip-card__open">Saber mais <i>&#8599;</i></span>
+                  <span class="strip-card__open">Visitar site <i>&#8599;</i></span>
                 </figure>
                 <div class="strip-card__meta">
                   <p><span>06</span>Pro Seguros</p>
@@ -330,7 +361,7 @@
     <section class="process" id="metodologia" aria-labelledby="processTitle">
       <div class="process__head">
         <div class="process__head-top">
-          <p class="process__eyebrow"><span>03</span><span>Como trabalhamos</span></p>
+          <p class="process__eyebrow"><span>04</span><span>Como trabalhamos</span></p>
           <p class="process__promise">Um processo claro, do primeiro contacto à entrega final.</p>
         </div>
         <h2 class="process__title" id="processTitle">
@@ -420,84 +451,58 @@
       </div>
     </section>
 
-    <section class="services" id="servicos" aria-labelledby="servicesTitle">
-      <div class="services__head">
-        <p class="services__eyebrow"><span>04</span><span>O que fazemos</span></p>
-        <h2 class="services__title" id="servicesTitle">
-          <span class="line"><span class="services__title-main">Serviços</span></span>
-          <em class="line"><span class="services__title-sub">do software ao terreno</span></em>
-        </h2>
-        <p class="services__promise" data-reveal>Cinco frentes de trabalho, um único parceiro. Passe o rato sobre cada
-          serviço para ver o que inclui.</p>
-      </div>
-      <div class="services__left">
-        <ul class="services__list" id="servicesList">
-          <li class="services__item is-active" data-tags="Sistemas de gestão|Aplicativos mobile|Soluções sob medida">
-            <a class="services__link" href="#contacto">
-              <span class="services__num">01</span>
-              <span class="services__body">
-                <span class="services__name">Desenvolvimento de software</span>
-                <span class="services__meta">Sistemas de gestão, aplicativos mobile e soluções sob medida</span>
-              </span>
-              <span class="services__arrow" aria-hidden="true">&#8599;</span>
-            </a>
+    <!-- Serviços: calm card grid in the same visual language as the first slides (styles in hero-uns.css).
+         .services__item / .services__name / data-tags are also read by the hero card in hero-uns.js. -->
+    <section class="uns-services" id="servicos" aria-labelledby="servicesTitle">
+      <div class="uns-services__inner">
+        <header class="uns-services__head">
+          <span class="eyebrow reveal">05 — Serviços</span>
+          <h2 class="section__title reveal" id="servicesTitle">Do software ao terreno, <span class="hl">um único
+              parceiro.</span></h2>
+        </header>
+        <ul class="svc-grid">
+          <li class="services__item svc-card reveal" data-tags="Sistemas de gestão|Aplicativos mobile|Soluções sob medida">
+            <p class="svc-card__num">01</p>
+            <h3 class="services__name svc-card__name">Desenvolvimento de software</h3>
+            <p class="svc-card__text">Sistemas de gestão, aplicativos mobile e soluções sob medida.</p>
+            <ul class="svc-card__tags"><li>Sistemas de gestão</li><li>Aplicativos mobile</li><li>Soluções sob medida</li></ul>
           </li>
-          <li class="services__item" data-tags="Infra-estrutura de TI|Redes seguras|Servidores">
-            <a class="services__link" href="#contacto">
-              <span class="services__num">02</span>
-              <span class="services__body">
-                <span class="services__name">Redes &amp; servidores</span>
-                <span class="services__meta">Infra-estrutura de TI segura e eficiente para o seu negócio</span>
-              </span>
-              <span class="services__arrow" aria-hidden="true">&#8599;</span>
-            </a>
+          <li class="services__item svc-card reveal" data-tags="Infra-estrutura de TI|Redes seguras|Servidores">
+            <p class="svc-card__num">02</p>
+            <h3 class="services__name svc-card__name">Redes &amp; servidores</h3>
+            <p class="svc-card__text">Infra-estrutura de TI segura e eficiente para o seu negócio.</p>
+            <ul class="svc-card__tags"><li>Infra-estrutura de TI</li><li>Redes seguras</li><li>Servidores</li></ul>
           </li>
-          <li class="services__item" data-tags="Vedação eléctrica|Câmaras de vigilância|Motores de portão">
-            <a class="services__link" href="#contacto">
-              <span class="services__num">03</span>
-              <span class="services__body">
-                <span class="services__name">Segurança &amp; automação</span>
-                <span class="services__meta">Vedação eléctrica, câmaras de vigilância e motores de portão</span>
-              </span>
-              <span class="services__arrow" aria-hidden="true">&#8599;</span>
-            </a>
+          <li class="services__item svc-card reveal" data-tags="Vedação eléctrica|Câmaras de vigilância|Motores de portão">
+            <p class="svc-card__num">03</p>
+            <h3 class="services__name svc-card__name">Segurança &amp; automação</h3>
+            <p class="svc-card__text">Vedação eléctrica, câmaras de vigilância e motores de portão.</p>
+            <ul class="svc-card__tags"><li>Vedação eléctrica</li><li>Câmaras de vigilância</li><li>Motores de portão</li></ul>
           </li>
-          <li class="services__item" data-tags="Estratégia tecnológica|Optimização de processos|Apoio à decisão">
-            <a class="services__link" href="#contacto">
-              <span class="services__num">04</span>
-              <span class="services__body">
-                <span class="services__name">Consultoria em TI</span>
-                <span class="services__meta">Estratégia tecnológica e optimização de processos de negócio</span>
-              </span>
-              <span class="services__arrow" aria-hidden="true">&#8599;</span>
-            </a>
+          <li class="services__item svc-card reveal" data-tags="Estratégia tecnológica|Optimização de processos|Apoio à decisão">
+            <p class="svc-card__num">04</p>
+            <h3 class="services__name svc-card__name">Consultoria em TI</h3>
+            <p class="svc-card__text">Estratégia tecnológica e optimização de processos de negócio.</p>
+            <ul class="svc-card__tags"><li>Estratégia tecnológica</li><li>Optimização de processos</li><li>Apoio à decisão</li></ul>
           </li>
-          <li class="services__item" data-tags="Websites empresariais|E-commerce|Blogs responsivos">
-            <a class="services__link" href="#contacto">
-              <span class="services__num">05</span>
-              <span class="services__body">
-                <span class="services__name">Desenvolvimento web</span>
-                <span class="services__meta">Websites empresariais, e-commerce e blogs responsivos</span>
-              </span>
-              <span class="services__arrow" aria-hidden="true">&#8599;</span>
+          <li class="services__item svc-card reveal" data-tags="Websites empresariais|E-commerce|Blogs responsivos">
+            <p class="svc-card__num">05</p>
+            <h3 class="services__name svc-card__name">Desenvolvimento web</h3>
+            <p class="svc-card__text">Websites empresariais, e-commerce e blogs responsivos.</p>
+            <ul class="svc-card__tags"><li>Websites empresariais</li><li>E-commerce</li><li>Blogs responsivos</li></ul>
+          </li>
+          <li class="svc-card svc-card--cta reveal">
+            <p class="svc-card__num">Vamos conversar</p>
+            <h3 class="svc-card__name">Tem um projecto em mente?</h3>
+            <a href="#contacto" class="btn btn--light">
+              Falar com a equipa
+              <svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true">
+                <path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
             </a>
           </li>
         </ul>
-      </div>
-      <div class="services__right">
-        <div class="services__panel" id="servicesPanel" aria-live="polite">
-          <span class="services__panel-ghost" id="servicesPanelGhost" aria-hidden="true">01</span>
-          <p class="services__panel-kicker"><span id="servicesPanelNum">01</span><span>/ 05</span></p>
-          <div class="services__panel-swap" id="servicesPanelSwap">
-            <p class="services__panel-name" id="servicesPanelName">Desenvolvimento de software</p>
-            <ul class="services__panel-tags" id="servicesPanelTags">
-              <li>Sistemas de gestão</li>
-              <li>Aplicativos mobile</li>
-              <li>Soluções sob medida</li>
-            </ul>
-          </div>
-          <a class="services__panel-cta" href="#contacto">Falar connosco <i aria-hidden="true">&#8599;</i></a>
-        </div>
       </div>
     </section>
 
@@ -617,7 +622,7 @@
         <p class="footer__col-title">Menu</p>
         <a href="#projetos">Projectos</a>
         <a href="#servicos">Serviços</a>
-        <a href="#sobre">Sobre</a>
+        <a href="#empresa">Sobre</a>
         <a href="#contacto">Contacto</a>
       </nav>
       <nav class="footer__col">
@@ -646,10 +651,111 @@
     </div>
   </footer>
 
+  <!-- ============ PROPOSAL PAGE (overlay) ============ -->
+  <section class="proposal" id="proposal" aria-hidden="true">
+    <video class="proposal__video" id="proposalVideo" muted loop playsinline preload="none" aria-hidden="true"></video>
+    <div class="proposal__veil" aria-hidden="true"></div>
+
+    <header class="appbar">
+      <button class="appbar__back" id="proposalBack" type="button">
+        <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Voltar
+      </button>
+      <span class="appbar__brand"><span class="nav__mark"></span> Unitech&nbsp;Solution</span>
+    </header>
+
+    <div class="proposal__scroll">
+      <form class="proposal__panel" id="proposalForm" novalidate>
+        <div class="pform__head">
+          <span class="eyebrow">Proposta</span>
+          <h2>Vamos dar forma à sua ideia</h2>
+          <p>Preencha os detalhes e a equipa Unitech entra em contacto consigo.</p>
+        </div>
+
+        <fieldset class="pform__group">
+          <legend><span>01</span> A sua ideia</legend>
+
+          <label class="field">
+            <span class="field__label">Ideia</span>
+            <textarea class="field__input" id="pIdea" rows="3" required
+                      placeholder="Descreva a sua ideia…"></textarea>
+          </label>
+
+          <label class="field">
+            <span class="field__label">Categoria de projeto</span>
+            <select class="field__input" id="pCategory" required>
+              <option value="" disabled selected>Selecione…</option>
+              <option>Website / Landing page</option>
+              <option>Aplicação móvel</option>
+              <option>Software / SaaS</option>
+              <option>E-commerce</option>
+              <option>Branding / Design</option>
+              <option>IA / Automação</option>
+              <option>Outro</option>
+            </select>
+          </label>
+
+          <label class="field">
+            <span class="field__label">Range de investimento</span>
+            <select class="field__input" id="pBudget" required>
+              <option value="" disabled selected>Selecione…</option>
+              <option>Menos de €1.000</option>
+              <option>€1.000 – €5.000</option>
+              <option>€5.000 – €15.000</option>
+              <option>€15.000 – €50.000</option>
+              <option>Mais de €50.000</option>
+              <option>Ainda a definir</option>
+            </select>
+          </label>
+        </fieldset>
+
+        <fieldset class="pform__group">
+          <legend><span>02</span> Contacto</legend>
+
+          <div class="field-row">
+            <label class="field">
+              <span class="field__label">Email</span>
+              <input class="field__input" id="pEmail" type="email" required
+                     placeholder="o-seu@email.com" autocomplete="email">
+            </label>
+            <label class="field">
+              <span class="field__label">Número de telefone</span>
+              <div class="phone">
+                <select class="field__input phone__code" id="pCountry" aria-label="Indicativo do país"></select>
+                <input class="field__input phone__num" id="pPhone" type="tel" required
+                       placeholder="900 000 000" autocomplete="tel">
+              </div>
+            </label>
+          </div>
+
+          <div class="checks">
+            <span class="field__label">Preferência de contacto</span>
+            <label class="check"><input type="checkbox" id="pWhats"> <span>Tenho WhatsApp neste número</span></label>
+            <label class="check"><input type="checkbox" id="pCallOnly"> <span>Prefiro apenas chamada</span></label>
+          </div>
+        </fieldset>
+
+        <button class="btn btn--primary pform__submit" type="submit">
+          Enviar proposta
+          <svg viewBox="0 0 24 24" width="17" height="17"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="pform__msg" id="proposalMsg" role="status"></div>
+      </form>
+    </div>
+  </section>
+
+  <!-- floating idea button (appears when the hero field scrolls away) -->
+  <button class="idea-fab" id="ideaFab" type="button" aria-label="Descreva a sua ideia">
+    <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M2 21l21-9L2 3v7l15 2-15 2v7z" fill="currentColor"/></svg>
+  </button>
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.11/dist/lenis.min.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
   <script src="main.js"></script>
+  <script src="hero-uns.js"></script>
 </body>
 
 </html>

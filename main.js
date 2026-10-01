@@ -118,13 +118,15 @@ function resolveCursorLabel(target) {
   if (!motionOff) gsap.registerPlugin(ScrollTrigger);
 
   const lenis = motionOff ? null : initLenis();
+  window.__lenis = lenis; // hero-uns.js pauses/resumes scrolling through this
 
   // Always-on, animation-agnostic behaviour.
   initMenu(lenis);
   initContactForm();
   initVideoAutoplay();
   initSmoothAnchors(lenis);
-  initServices(!motionOff);
+  // initServices() drove the old navy services list; that section is now a static card grid.
+  initStripMore();
 
   if (motionOff) {
     document.getElementById('preloader')?.remove();
@@ -135,7 +137,8 @@ function resolveCursorLabel(target) {
   const revealHero = initHeroSplit();
   initPreloader(revealHero);
   initHeroCanvas();
-  initCursor();
+  // Custom cursor (dot + ring following the pointer) disabled at the user's
+  // request — initCursor() is kept below in case it's wanted back.
   initMagnetic();
   initManifesto();
   initAboutReveal();
@@ -220,6 +223,7 @@ function initHeroSplit() {
   return function revealHero() {
     if (played) return;
     played = true;
+    window.__unsReady = true; window.dispatchEvent(new Event('uns:ready')); // lets the ported hero start its intro
     const tl = gsap.timeline({ defaults: { ease: 'power4.out' } });
     groups.forEach((chars, i) => {
       if (!chars.length) return;
@@ -597,14 +601,59 @@ function initGenericReveals() {
   });
 }
 
+/* ── 8b. PROJECTS — show the first 8, "ver mais" / "ver menos" ── */
+// Runs with or without motion: hides every project after the 8th behind a
+// "ver mais" tile; once revealed, a "ver menos" tile at the very end folds
+// them away again. Announces each change with 'strip:changed'.
+function initStripMore() {
+  const root = document.querySelector('.strip');
+  const rail = root?.querySelector('.strip__rail');
+  if (!rail) return;
+  const LIMIT = 8;
+  const projects = Array.from(rail.querySelectorAll('.strip-card'));
+  const extras = projects.slice(LIMIT);
+  if (!extras.length) return;
+
+  const tile = (kind, arrow, label, note) => {
+    const el = document.createElement('button');
+    el.type = 'button';
+    el.className = `strip-card strip-card--square strip-card--more strip-card--${kind}`;
+    el.setAttribute('aria-label', label);
+    el.innerHTML = `<span class="strip-card__float"><span class="strip-more__ring" aria-hidden="true">${arrow}</span><span class="strip-more__label">${label}</span><span class="strip-more__count">${note}</span></span>`;
+    return el;
+  };
+  const more = tile('expand', '&#8594;', 'Ver mais projectos', `+${extras.length}`);
+  const less = tile('collapse', '&#8592;', 'Ver menos', `Mostrar só ${LIMIT}`);
+  rail.insertBefore(more, extras[0]);
+  rail.appendChild(less);
+
+  function set(expanded) {
+    extras.forEach(c => { c.hidden = !expanded; });
+    more.hidden = expanded;
+    less.hidden = !expanded;
+    // where the carousel should settle: first revealed project, or the last of the 8
+    const focusEl = expanded ? extras[0] : projects[LIMIT - 1];
+    root.dispatchEvent(new CustomEvent('strip:changed', { detail: { expanded, focusEl } }));
+  }
+  more.addEventListener('click', () => set(true));
+  less.addEventListener('click', () => set(false));
+  extras.forEach(c => { c.hidden = true; });
+  less.hidden = true;
+}
+
 /* ── 9. PROJECTS — pinned 3D carousel ─────────────────── */
 function initStripCarousel() {
   const root = document.querySelector('[data-strip-carousel]');
   if (!root) return;
   const pin = root.querySelector('.strip__pin');
   const rail = root.querySelector('.strip__rail');
-  const cards = gsap.utils.toArray(root.querySelectorAll('.strip-card'));
+  // Only the cards currently shown take part; initStripMore() hides the extra
+  // projects behind "ver mais" / "ver menos" tiles and announces 'strip:changed'.
+  const visibleCards = () => gsap.utils.toArray(root.querySelectorAll('.strip-card')).filter(c => !c.hidden);
+  let cards = visibleCards();
   const currentEl = root.querySelector('#stripCurrent');
+  const totalEl = root.querySelector('#stripTotal');
+  const projectCount = () => cards.filter(c => !c.classList.contains('strip-card--more')).length;
   if (!pin || !rail || cards.length < 2) return;
 
   let dominant = -1, override = -1, resizeTimer, pinTimeline = null;
@@ -631,12 +680,13 @@ function initStripCarousel() {
   const pinDistance = () => Math.round(Math.max((startX() - endX()) * gapMult(), window.innerHeight * .6));
 
   const ROT = [-2.5, 2, -1.5, 3, -2, 1.5, -3, 2.5];
-  const staticTransforms = cards.map((_c, i) => {
+  const staticTransform = i => {
     const val = ROT[i % ROT.length];
     const ry = Math.max(-4, Math.min(4, val * .55));
     const rx = Math.max(-4, Math.min(4, val));
     return `rotate(${ry}deg) rotateY(${rx}deg)`;
-  });
+  };
+  let staticTransforms = cards.map((_c, i) => staticTransform(i));
 
   let step = stepY();
 
@@ -657,19 +707,97 @@ function initStripCarousel() {
       if (cards[active]) cards[active].classList.add('is-dominant');
       dominant = active;
       root.dataset.activeIndex = String(active);
-      if (currentEl) currentEl.textContent = String(active + 1).padStart(2, '0');
+      if (currentEl) currentEl.textContent = String(Math.min(active + 1, projectCount())).padStart(2, '0');
+      const li = Math.min(legendCards.indexOf(cards[active]) < 0 ? legendCards.length - 1 : legendCards.indexOf(cards[active]), legendCards.length - 1);
+      legendBtns.forEach((b, i) => b.classList.toggle('is-active', i === li));
     }
   }
 
-  cards.forEach((card, i) => {
-    card.addEventListener('focus', () => { override = i; place(i, i); });
-    card.addEventListener('blur', () => {
-      override = -1;
-      const progress = pinTimeline?.scrollTrigger?.progress ?? 0;
-      place(progress * (cards.length - 1), -1);
+  // Focus or hover pulls that card to the front (same pose the scroll gives the
+  // dominant card); a short CSS transition is switched on only while this is in
+  // play so the scrubbed scroll itself never lags.
+  let hoverTimer;
+  const bringForward = card => {
+    const i = cards.indexOf(card);
+    if (i < 0) return;
+    clearTimeout(hoverTimer);
+    root.classList.add('is-hovering');
+    override = i; place(i, i);
+  };
+  const release = () => {
+    override = -1;
+    const progress = pinTimeline?.scrollTrigger?.progress ?? 0;
+    place(progress * (cards.length - 1), -1);
+    clearTimeout(hoverTimer);
+    hoverTimer = setTimeout(() => root.classList.remove('is-hovering'), 480);
+  };
+  const fine = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  gsap.utils.toArray(root.querySelectorAll('.strip-card')).forEach(card => {
+    card.addEventListener('focus', () => bringForward(card));
+    card.addEventListener('blur', release);
+    if (fine) {
+      card.addEventListener('mouseenter', () => bringForward(card));
+      card.addEventListener('mouseleave', release);
+    }
+  });
+  if (totalEl) totalEl.textContent = String(projectCount()).padStart(2, '0');
+
+  // Project-name bar (same idea as Uns2's .strip__legend): one tab per project on
+  // show, the active one lights up as the carousel moves; clicking scrolls to it.
+  let legendBtns = [], legendCards = [];
+  function buildLegend() {
+    if (!head) return;
+    let ol = pin.querySelector('.strip__legend'); // lives in the pin (before the header), not inside it
+    if (!ol) {
+      ol = document.createElement('ol');
+      ol.className = 'strip__legend';
+      ol.setAttribute('aria-label', 'Projectos em destaque');
+      pin.insertBefore(ol, head); // first thing in the section, right at the white→blue seam
+    }
+    ol.innerHTML = '';
+    legendCards = cards.filter(c => !c.classList.contains('strip-card--more'));
+    ol.classList.toggle('is-compact', legendCards.length > 8);
+    legendBtns = legendCards.map((card, i) => {
+      const title = card.querySelector('.strip-card__meta p');
+      const name = title ? title.lastChild.textContent.trim() : '';
+      const li = document.createElement('li');
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      const n = document.createElement('span');
+      n.textContent = String(i + 1).padStart(2, '0');
+      btn.append(n, name);
+      btn.addEventListener('click', () => {
+        const st = pinTimeline?.scrollTrigger;
+        if (!st) return;
+        const target = st.start + (cards.indexOf(card) / (cards.length - 1)) * (st.end - st.start) + 1;
+        if (window.__lenis) window.__lenis.scrollTo(target, { duration: .9 });
+        else window.scrollTo({ top: target, behavior: 'smooth' });
+      });
+      li.appendChild(btn);
+      ol.appendChild(li);
+      return btn;
     });
+  }
+
+  root.addEventListener('strip:changed', e => {
+    cards = visibleCards();
+    buildLegend();
+    staticTransforms = cards.map((_c, i) => staticTransform(i));
+    override = -1; dominant = -1;
+    if (totalEl) totalEl.textContent = String(projectCount()).padStart(2, '0');
+    ScrollTrigger.refresh();
+    const st = pinTimeline?.scrollTrigger;
+    const focus = Math.max(0, cards.indexOf(e.detail?.focusEl));
+    if (st) {
+      // keep the visitor in the carousel, settled on the relevant project
+      const target = st.start + (focus / (cards.length - 1)) * (st.end - st.start);
+      if (window.__lenis) window.__lenis.scrollTo(target, { immediate: true, force: true });
+      else window.scrollTo(0, target);
+      place(focus, -1);
+    }
   });
 
+  buildLegend();
   root.classList.add('is-carousel-ready');
   root.dataset.activeIndex = '0';
   root.dataset.pinDistance = String(pinDistance());
@@ -921,7 +1049,7 @@ function initMenu(lenis) {
     menu.classList.toggle('is-open', open);
     document.documentElement.classList.toggle('menu-open', open);
     burger.setAttribute('aria-expanded', String(open));
-    burger.setAttribute('aria-label', open ? 'Fermer le menu' : 'Ouvrir le menu');
+    burger.setAttribute('aria-label', open ? 'Fechar menu' : 'Abrir menu');
     menu.setAttribute('aria-hidden', String(!open));
     if (lenis) { open ? lenis.stop() : lenis.start(); }
   }
@@ -971,7 +1099,7 @@ function initContactForm() {
     stepLbl.textContent = steps[current].dataset.label || '';
     progBar.style.width = `${((current + 1) / total) * 100}%`;
     backBtn.hidden = current === 0;
-    nextLabel.textContent = current === total - 1 ? 'Envoyer' : 'Continuer';
+    nextLabel.textContent = current === total - 1 ? 'Enviar' : 'Continuar';
 
     if (canAnimate) {
       gsap.fromTo(steps[current], { opacity: 0, x: 34 * dir }, { opacity: 1, x: 0, duration: .55, ease: 'power3.out', clearProps: 'opacity,transform' });
