@@ -1,5 +1,23 @@
 {
   "projects": {
-    "default": "unitech-b7715"
-  }
+    "default": "unitech-b7715",
+    "emlperfumes": "unitechfooddeliverydb"
+  },
+  "targets": {
+    "unitech-b7715": {
+      "hosting": {
+        "site": [
+          "unitech-b7715"
+        ]
+      }
+    },
+    "unitechfooddeliverydb": {
+      "hosting": {
+        "site": [
+          "unitech-solution"
+        ]
+      }
+    }
+  },
+  "etags": {}
 }

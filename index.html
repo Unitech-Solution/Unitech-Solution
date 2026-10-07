@@ -1,21 +1,96 @@
 ﻿<!DOCTYPE html>
-<html lang="pt" dir="ltr">
+<html lang="pt-MZ" dir="ltr">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Unitech Solution — Tecnologia, Software &amp; Segurança em Maputo, Moçambique</title>
-  <meta name="description"
-    content="Unitech Solution — where wisdom meets innovation. Desenvolvimento de software, redes e servidores, segurança electrónica e consultoria em TI, em Maputo, Moçambique.">
+  <script>
+  /* First slide (hero-lp.js): the panel illustration starts "asleep" (a spreadsheet) and wakes into a dashboard.
+     Armed before the first paint so it is never seen awake first; hero-lp.js takes over and, if it never
+     does, this safety timer wakes everything — nothing can stay asleep. Must come before the stylesheets. */
+  (function(){try{
+    if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+    if(!('IntersectionObserver' in window))return;
+    var h=document.documentElement;
+    h.setAttribute('data-wake','armed');
+    window.__lpDisarm=setTimeout(function(){h.removeAttribute('data-wake');},8000);
+  }catch(e){}})();
+  </script>
+  <title>Unitech Solution — Software, Aplicativos e Sites em Maputo, Moçambique</title>
+  <meta name="description" content="Software à medida, aplicativos móveis e sites para empresas em Moçambique. Redes e servidores, segurança electrónica e consultoria em TI, em Maputo. Peça um orçamento grátis.">
+  <!-- The one address of this page. When the site moves to its own domain (unitechsolution.co.mz), change it here, in the
+       og:url/og:image/twitter:image tags, in the JSON-LD below, in robots.txt and in sitemap.xml. -->
+  <link rel="canonical" href="https://unitech-solution.web.app/">
   <meta name="theme-color" content="#04255C">
-  <link rel="icon" href="assets/img/favicon.jpg">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:ital,wght@0,400;0,500;0,700;0,800;1,400;1,500&family=Plus+Jakarta+Sans:wght@500;600;700&family=Sora:wght@600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap"
-    rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="hero-uns.css">
+  <!-- icons: Google Search does not use SVG favicons, so the ICO/PNG come first -->
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" href="/favicon-48x48.png" type="image/png" sizes="48x48">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <!-- link previews (WhatsApp, Facebook, LinkedIn, X) -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Unitech Solution">
+  <meta property="og:locale" content="pt_MZ">
+  <meta property="og:url" content="https://unitech-solution.web.app/">
+  <meta property="og:title" content="Unitech Solution — Software, Aplicativos e Sites em Maputo, Moçambique">
+  <meta property="og:description" content="Software à medida, aplicativos móveis e sites para empresas em Moçambique. Redes e servidores, segurança electrónica e consultoria em TI, em Maputo. Peça um orçamento grátis.">
+  <meta property="og:image" content="https://unitech-solution.web.app/assets/img/og-image.jpg">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Unitech Solution — Transformamos problemas reais em soluções digitais que funcionam. Software, aplicativos e sites em Maputo, Moçambique.">
+  <meta name="twitter:card" content="summary_large_image">
+  <!-- who we are, for search engines (must match what the page shows: name, address and phone as in the footer) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "LocalBusiness",
+        "@id": "https://unitech-solution.web.app/#empresa",
+        "name": "Unitech Solution",
+        "url": "https://unitech-solution.web.app/",
+        "logo": "https://unitech-solution.web.app/assets/img/logo.png",
+        "image": "https://unitech-solution.web.app/assets/img/og-image.jpg",
+        "description": "Empresa de tecnologia moçambicana: desenvolvimento de software à medida, aplicativos móveis e sites, redes e servidores, segurança electrónica e consultoria em TI.",
+        "telephone": "+258 84 877 6057",
+        "email": "comercial@unitechsolution.co.mz",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Rua 1408, Bairro da Coop, KaMpfumo",
+          "addressLocality": "Maputo",
+          "addressCountry": "MZ"
+        },
+        "areaServed": {
+          "@type": "Country",
+          "name": "Moçambique"
+        },
+        "sameAs": [
+          "https://unitechsolution.co.mz/"
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://unitech-solution.web.app/#site",
+        "name": "Unitech Solution",
+        "alternateName": "Unitech",
+        "url": "https://unitech-solution.web.app/",
+        "inLanguage": "pt-MZ",
+        "publisher": {
+          "@id": "https://unitech-solution.web.app/#empresa"
+        }
+      }
+    ]
+  }
+  </script>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <!-- one typeface for the whole site: Inter, self-hosted (assets/fonts, @font-face in hero-lp.css) -->
+  <link rel="preload" href="assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <!-- ?v= makes browsers fetch fresh CSS/JS after a deploy — bump it (here and on the scripts below) each time -->
+  <link rel="stylesheet" href="styles.css?v=20261008">
+  <link rel="stylesheet" href="hero-uns.css?v=20261008">
+  <link rel="stylesheet" href="hero-lp.css?v=20261008">
   <script>document.documentElement.classList.add('js');</script>
 </head>
 
@@ -23,7 +98,7 @@
   <div class="grain" aria-hidden="true"></div>
 
   <div class="preloader" id="preloader" aria-hidden="true">
-    <img class="preloader__logo" id="preloaderLogo" src="assets/img/logo.png" alt="">
+    <img class="preloader__logo" id="preloaderLogo" src="assets/img/logo.png" width="2410" height="1276" alt="">
     <div class="preloader__marquee">
       <div class="preloader__track" id="preloaderTrack">
         <span>UNITECH SOLUTION &nbsp;&#183;&nbsp; WHERE WISDOM MEETS INNOVATION &nbsp;&#183;&nbsp; </span>
@@ -33,103 +108,145 @@
     <div class="preloader__curtain" id="preloaderCurtain"></div>
   </div>
 
-  <!-- Nav bar ported from unitechsolution.web.app (styles in hero-uns.css); burger + mobile menu are this site's -->
-  <header class="nav nav--uns" id="nav">
-    <a class="nav__brand" href="#main-content" aria-label="Unitech Solution, voltar ao topo">
-      <span class="nav__mark"></span>
-      <span class="nav__name">Unitech&nbsp;Solution</span>
-    </a>
-    <nav class="nav__links" aria-label="Navegação principal">
-      <a href="#projetos">Projectos</a>
-      <a href="#inovacao">Inovação</a>
-      <a href="#servicos">Serviços</a>
-      <a href="#empresa">Sobre</a>
+  <!-- Nav bar of the unitech-landing-page project (Downloads: Navbar.tsx + kokonut Smooth Tab + useMobileMenu),
+       converted to static HTML. Styles in hero-lp.css, behaviour (sliding tab, current section, drawer) in hero-lp.js.
+       Their section names, pointed at this site's sections. -->
+  <header class="lp-nav" id="nav" style="position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(255,255,255,.86);backdrop-filter:saturate(180%) blur(14px);-webkit-backdrop-filter:saturate(180%) blur(14px);border-bottom:1px solid #E6ECF4">
+    <div style="max-width:1320px;margin:0 auto;padding:0 clamp(20px,4vw,40px);height:72px;display:flex;align-items:center;justify-content:space-between;gap:24px">
+      <a href="#hero" aria-label="Unitech Solution — início" style="display:flex;align-items:center"><img src="assets/img/unitech-logo.svg" width="279" height="150" alt="Unitech Solution" style="height:44px;width:auto;display:block"></a>
+      <!-- next to the logo with a fixed gap; the rest of the bar goes between the tabs and the button -->
+      <nav class="desktop-only" aria-label="Navegação principal" style="margin:0 auto 0 clamp(8px,2vw,32px)">
+        <div class="nav-tabs" id="navTabs">
+          <span class="nav-tab-fundo" aria-hidden="true"></span>
+          <a class="nav-tab" data-sec="hero" href="#hero">Início</a>
+          <a class="nav-tab" data-sec="projetos" href="#projetos">Projetos</a>
+          <a class="nav-tab" data-sec="metodologia" href="#metodologia">Como Trabalhamos</a>
+          <a class="nav-tab" data-sec="servicos" href="#servicos">Serviços</a>
+          <a class="nav-tab" data-sec="empresa" href="#empresa">Sobre</a>
+          <a class="nav-tab" data-sec="contacto" href="#contacto">Contacto</a>
+        </div>
+      </nav>
+      <a href="#contacto" class="desktop-only hover-btn-nav" style="display:inline-flex;align-items:center;height:44px;border-radius:10px;background:#00AEEF;color:#fff;font-size:15px;font-weight:500;transition:transform .2s,box-shadow .2s;box-shadow:0 6px 18px -8px rgba(0,174,239,.7);padding:0 20px">Pedir Orçamento</a>
+      <div class="mobile-only" style="display:flex;align-items:center;gap:8px">
+        <a href="#contacto" class="hover-btn-nav" style="display:inline-flex;align-items:center;height:44px;border-radius:10px;background:#00AEEF;color:#fff;font-size:15px;font-weight:500;transition:transform .2s,box-shadow .2s;box-shadow:0 6px 18px -8px rgba(0,174,239,.7);padding:0 16px;white-space:nowrap"><span class="cta-verb">Pedir&nbsp;</span>Orçamento</a>
+        <button type="button" data-menu-toggle aria-expanded="false" aria-controls="menu-mobile" aria-label="Abrir menu" style="width:44px;height:44px;border-radius:10px;border:1px solid #E6ECF4;background:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0">
+          <span data-menu-icon="open" style="width:22px;height:22px;background:#111;-webkit-mask:url(assets/img/icons/menu.svg) center/contain no-repeat;mask:url(assets/img/icons/menu.svg) center/contain no-repeat"></span>
+          <span data-menu-icon="close" hidden style="width:22px;height:22px;background:#111;-webkit-mask:url(assets/img/icons/x.svg) center/contain no-repeat;mask:url(assets/img/icons/x.svg) center/contain no-repeat"></span>
+        </button>
+      </div>
+    </div>
+    <nav class="mobile-only" id="menu-mobile" data-mobile-menu hidden aria-label="Navegação móvel" style="background:#fff;border-top:1px solid #E6ECF4;padding:8px 20px 24px;display:flex;flex-direction:column;box-shadow:0 24px 40px -24px rgba(15,26,61,.3)">
+      <a href="#hero" style="color:#111;font-size:18px;font-weight:500;padding:14px 0;border-bottom:1px solid #EEF2F8">Início</a>
+      <a href="#projetos" style="color:#111;font-size:18px;font-weight:500;padding:14px 0;border-bottom:1px solid #EEF2F8">Projetos</a>
+      <a href="#metodologia" style="color:#111;font-size:18px;font-weight:500;padding:14px 0;border-bottom:1px solid #EEF2F8">Como Trabalhamos</a>
+      <a href="#servicos" style="color:#111;font-size:18px;font-weight:500;padding:14px 0;border-bottom:1px solid #EEF2F8">Serviços</a>
+      <a href="#empresa" style="color:#111;font-size:18px;font-weight:500;padding:14px 0;border-bottom:1px solid #EEF2F8">Sobre</a>
+      <a href="#contacto" style="color:#111;font-size:18px;font-weight:500;padding:14px 0;border-bottom:1px solid #EEF2F8">Contacto</a>
+      <a href="#contacto" style="margin-top:20px;display:flex;align-items:center;justify-content:center;height:52px;border-radius:10px;background:#00AEEF;color:#fff;font-size:16px;font-weight:500">Pedir Orçamento</a>
     </nav>
-    <a class="nav__cta btn btn--primary" href="#contacto">
-      Falar com a equipa
-      <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true">
-        <path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-          stroke-linejoin="round" />
-      </svg>
-    </a>
-    <button class="nav__burger" id="navBurger" type="button" aria-label="Abrir menu" aria-expanded="false"
-      aria-controls="mobileMenu">
-      <span></span><span></span>
-    </button>
   </header>
 
-  <div class="mnav" id="mobileMenu" aria-hidden="true">
-    <p class="mnav__label">(Menu)</p>
-    <nav class="mnav__links" aria-label="Navegação móvel">
-      <a href="#projetos" style="--i:0"><i>01</i>Projectos</a>
-      <a href="#inovacao" style="--i:1"><i>02</i>Inovação</a>
-      <a href="#servicos" style="--i:2"><i>03</i>Serviços</a>
-      <a href="#empresa" style="--i:3"><i>04</i>Sobre</a>
-      <a href="#contacto" style="--i:4"><i>05</i>Falar com a equipa</a>
-    </nav>
-    <p class="mnav__foot">
-      <span>Unitech Solution &#183; Maputo, Moçambique</span>
-      <a href="mailto:comercial@unitechsolution.co.mz">comercial@unitechsolution.co.mz</a>
-    </p>
-  </div>
-
   <main id="main-content" role="main">
-    <!-- First slide ported from unitechsolution.web.app (see hero-uns.css / hero-uns.js) -->
-    <section class="uhero" id="hero">
-      <div class="uhero__grid">
-        <div class="uhero__left">
-          <h1 class="uhero__type"><span class="sr-only">Unitech Solution — tecnologia, software e segurança em Maputo, Moçambique. </span><span id="typed"></span><span class="caret" id="caret"></span></h1>
-          <form class="ask ask--enter" id="askForm" novalidate>
-            <div class="ask__glass">
-              <input class="ask__input" id="askInput" type="text" autocomplete="off"
-                placeholder="Descreva a sua ideia…" aria-label="A sua ideia">
-              <button class="ask__send" type="submit" aria-label="Enviar">
-                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
-                  <path d="M2 21l21-9L2 3v7l15 2-15 2v7z" fill="currentColor" />
-                </svg>
-              </button>
+    <!-- First slide: the hero of the unitech-landing-page project (Downloads), converted from its React
+         components (Hero, HeroTitulo, HeroWaves) to static HTML; styles in hero-lp.css, behaviour in hero-lp.js -->
+    <!-- 02 Hero -->
+    <section class="lp-hero" id="hero" aria-labelledby="lpTitle" style="position:relative;padding-top:calc(var(--lp-nav,72px) + clamp(40px,6vw,88px))">
+      <div class="hero-ondas" id="heroOndas" aria-hidden="true"></div>
+      <div style="position:relative;z-index:1;max-width:1320px;margin:0 auto;padding:0 clamp(20px,4vw,40px)">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,500px),1fr));gap:clamp(48px,5vw,72px);align-items:center">
+          <div style="display:flex;flex-direction:column;align-items:flex-start">
+            <div style="display:inline-flex;align-items:center;gap:10px;height:36px;padding:0 14px 0 10px;border-radius:999px;background:#EAF6FD;border:1px solid #CFEAF9;color:#2B3990;font-size:14px;font-weight:500">
+              <img src="assets/img/unitech-symbol.svg" width="185" height="150" alt="" style="height:16px;width:auto;display:block">
+              <span>Tecnologia feita em Moçambique</span>
             </div>
-          </form>
-          <div class="ask__msg" id="askMsg" role="status"></div>
+            <h1 class="lp-hero__title" id="lpTitle" style="margin:28px 0 0;font-size:clamp(42px,3.9vw,56px);line-height:1.03;font-weight:650;letter-spacing:-0.038em;color:#111;text-wrap:balance">Transformamos problemas reais em <span style="color:#0079AE">soluções digitais</span> que funcionam.</h1>
+            <p style="margin:24px 0 0;max-width:640px;font-size:clamp(18px,1.5vw,20px);line-height:1.5;color:#5B6475;text-wrap:pretty">Software, aplicativos e sistemas à medida para a sua empresa crescer, poupar tempo e ter controlo total do negócio.</p>
+            <div style="margin-top:36px;display:flex;flex-wrap:wrap;gap:12px">
+              <a class="hover-btn-hero" href="#contacto" style="display:inline-flex;align-items:center;gap:10px;height:56px;padding:0 26px;border-radius:10px;background:#00AEEF;color:#fff;font-size:16px;font-weight:500;transition:transform .2s,box-shadow .2s;box-shadow:0 10px 28px -12px rgba(0,174,239,.85)">Pedir Orçamento Grátis<span style="width:18px;height:18px;background:#fff;-webkit--mask:url(assets/img/icons/arrow-right.svg) center/contain no-repeat;mask:url(assets/img/icons/arrow-right.svg) center/contain no-repeat"></span></a>
+              <a class="hover-btn-outline" href="#servicos" style="display:inline-flex;align-items:center;height:56px;padding:0 26px;border-radius:10px;background:#fff;border:1px solid #D5DDEA;color:#111;font-size:16px;font-weight:500;transition:border-color .2s,transform .2s">Ver Serviços</a>
+            </div>
+          </div>
+
+          <div style="container-type:inline-size;width:100%;max-width:640px;justify-self:center">
+            <div role="img" data-inst="sheet" aria-label="Ilustração: painel de gestão e app móvel com vendas, encomendas e tempo poupado" style="position:relative;width:100%;aspect-ratio:1/0.9">
+              <div style="position:absolute;left:12cqw;top:6cqw;width:36cqw;height:68cqw;border-radius:5cqw;background:linear-gradient(180deg,#2B3990 0%,#2889C9 72%,#27A9E1 100%);transform:skewY(15deg)"></div>
+              <div style="position:absolute;left:52cqw;top:4cqw;width:30cqw;height:44cqw;border-radius:5cqw;background:linear-gradient(180deg,#2B3990 0%,#2889C9 72%,#27A9E1 100%);transform:skewY(15deg)"></div>
+              <div style="position:absolute;left:64cqw;top:58cqw;width:30cqw;height:28cqw;border-radius:5cqw;background:#E6F5FD;transform:skewY(15deg)"></div>
+
+              <div style="position:absolute;left:0;top:16cqw;width:84cqw;height:54cqw;background:#fff;border-radius:1.8cqw;overflow:hidden;box-shadow:0 0 0 1px rgba(15,26,61,.06),0 4cqw 10cqw -3cqw rgba(43,57,144,.35);font-size:1.3cqw;line-height:1.3;color:#111">
+                <div style="height:4.2cqw;background:#F5F8FC;border-bottom:1px solid #E6ECF4;display:flex;align-items:center;gap:.7cqw;padding:0 1.6cqw">
+                  <span style="width:1cqw;height:1cqw;border-radius:50%;background:#D5DDEA"></span><span style="width:1cqw;height:1cqw;border-radius:50%;background:#D5DDEA"></span><span style="width:1cqw;height:1cqw;border-radius:50%;background:#D5DDEA"></span>
+                  <span style="margin-left:2cqw;height:2.4cqw;padding:0 1.4cqw;border-radius:1.2cqw;background:#fff;border:1px solid #E6ECF4;display:flex;align-items:center;font-size:1.05cqw;color:#5B6475">painel.suaempresa.co.mz</span>
+                </div>
+                <div style="position:relative;isolation:isolate;display:grid;grid-template-columns:16cqw 1fr;height:calc(100% - 4.2cqw)"><div data-sheet-grid aria-hidden="true"></div>
+                  <div data-sheet-ink style="border-right:1px solid #EEF2F8;padding:1.8cqw 1.2cqw;display:flex;flex-direction:column;gap:.5cqw">
+                    <img src="assets/img/unitech-symbol.svg" width="185" height="150" alt="" style="height:2.6cqw;width:auto;align-self:flex-start;margin:0 0 1.4cqw .8cqw">
+                    <div style="display:flex;align-items:center;gap:.8cqw;padding:.8cqw;border-radius:.8cqw;background:#E9F7FE;color:#0F1A3D;font-weight:600"><span style="width:1.4cqw;height:1.4cqw;background:#2B3990;-webkit--mask:url(assets/img/icons/layout-dashboard.svg) center/contain no-repeat;mask:url(assets/img/icons/layout-dashboard.svg) center/contain no-repeat"></span>Visão geral</div>
+                    <div style="display:flex;align-items:center;gap:.8cqw;padding:.8cqw;color:#5B6475"><span style="width:1.4cqw;height:1.4cqw;background:#8A94A6;-webkit--mask:url(assets/img/icons/shopping-cart.svg) center/contain no-repeat;mask:url(assets/img/icons/shopping-cart.svg) center/contain no-repeat"></span>Vendas</div>
+                    <div style="display:flex;align-items:center;gap:.8cqw;padding:.8cqw;color:#5B6475"><span style="width:1.4cqw;height:1.4cqw;background:#8A94A6;-webkit--mask:url(assets/img/icons/package.svg) center/contain no-repeat;mask:url(assets/img/icons/package.svg) center/contain no-repeat"></span>Stock</div>
+                    <div style="display:flex;align-items:center;gap:.8cqw;padding:.8cqw;color:#5B6475"><span style="width:1.4cqw;height:1.4cqw;background:#8A94A6;-webkit--mask:url(assets/img/icons/users.svg) center/contain no-repeat;mask:url(assets/img/icons/users.svg) center/contain no-repeat"></span>Clientes</div>
+                    <div style="display:flex;align-items:center;gap:.8cqw;padding:.8cqw;color:#5B6475"><span style="width:1.4cqw;height:1.4cqw;background:#8A94A6;-webkit--mask:url(assets/img/icons/trending-up.svg) center/contain no-repeat;mask:url(assets/img/icons/trending-up.svg) center/contain no-repeat"></span>Relatórios</div>
+                  </div>
+                  <div style="position:relative;padding:1.8cqw 2cqw;display:flex;flex-direction:column;gap:1.4cqw;min-width:0">
+                    <div data-sheet-ink style="display:flex;align-items:flex-end;justify-content:space-between">
+                      <div><div style="font-size:2.1cqw;font-weight:650;letter-spacing:-.02em">Visão geral</div><div style="font-size:1.05cqw;color:#5B6475;margin-top:.3cqw">Outubro 2026</div></div>
+                      <span style="font-size:1.05cqw;font-weight:500;color:#fff;background:#0F1A3D;border-radius:.7cqw;padding:.7cqw 1.2cqw">Exportar</span>
+                    </div>
+                    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1cqw">
+                      <div data-sheet-kpi style="border:1px solid #EEF2F8;border-radius:1cqw;padding:1.2cqw"><div style="font-size:1.05cqw;color:#5B6475">Vendas do mês</div><div data-inst="value" style="font-size:1.8cqw;font-weight:650;letter-spacing:-.02em;margin-top:.4cqw;font-variant-numeric:tabular-nums">1.248.500 MT</div><div style="font-size:1cqw;color:#2B3990;font-weight:600;margin-top:.3cqw">▲ 18%</div></div>
+                      <div data-sheet-kpi style="border:1px solid #EEF2F8;border-radius:1cqw;padding:1.2cqw"><div style="font-size:1.05cqw;color:#5B6475">Encomendas</div><div data-inst="value" style="font-size:1.8cqw;font-weight:650;letter-spacing:-.02em;margin-top:.4cqw;font-variant-numeric:tabular-nums">3.412</div><div style="font-size:1cqw;color:#2B3990;font-weight:600;margin-top:.3cqw">▲ 9%</div></div>
+                      <div data-sheet-kpi style="border:1px solid #EEF2F8;border-radius:1cqw;padding:1.2cqw"><div style="font-size:1.05cqw;color:#5B6475">Tempo poupado</div><div data-inst="value" style="font-size:1.8cqw;font-weight:650;letter-spacing:-.02em;margin-top:.4cqw;font-variant-numeric:tabular-nums">126 h</div><div style="font-size:1cqw;color:#2B3990;font-weight:600;margin-top:.3cqw">este mês</div></div>
+                    </div>
+                    <div data-sheet-panel style="border:1px solid #EEF2F8;border-radius:1cqw;padding:1.2cqw 1.4cqw">
+                      <div data-sheet-ink style="display:flex;justify-content:space-between;font-size:1.15cqw;font-weight:600"><span>Vendas por semana</span><span style="color:#5B6475;font-weight:400">12 semanas</span></div>
+                      <div data-sheet-chart style="display:flex;align-items:flex-end;gap:.8cqw;height:11cqw;margin-top:1.2cqw">
+                        <div data-inst="bar" style="--i:0;flex:1;height:38%;border-radius:.4cqw;background:#DCEFFB"></div><div data-inst="bar" style="--i:1;flex:1;height:52%;border-radius:.4cqw;background:#DCEFFB"></div><div data-inst="bar" style="--i:2;flex:1;height:44%;border-radius:.4cqw;background:#DCEFFB"></div><div data-inst="bar" style="--i:3;flex:1;height:60%;border-radius:.4cqw;background:#DCEFFB"></div><div data-inst="bar" style="--i:4;flex:1;height:48%;border-radius:.4cqw;background:#DCEFFB"></div><div data-inst="bar" style="--i:5;flex:1;height:68%;border-radius:.4cqw;background:#DCEFFB"></div><div data-inst="bar" style="--i:6;flex:1;height:58%;border-radius:.4cqw;background:#DCEFFB"></div><div data-inst="bar" style="--i:7;flex:1;height:74%;border-radius:.4cqw;background:#DCEFFB"></div><div data-inst="bar" style="--i:8;flex:1;height:64%;border-radius:.4cqw;background:#DCEFFB"></div>
+                        <div data-inst="bar" style="--i:9;flex:1;height:80%;border-radius:.4cqw;background:linear-gradient(180deg,#2B3990,#27A9E1)"></div><div data-inst="bar" style="--i:10;flex:1;height:72%;border-radius:.4cqw;background:linear-gradient(180deg,#2B3990,#27A9E1)"></div><div data-inst="bar" style="--i:11;flex:1;height:94%;border-radius:.4cqw;background:#00AEEF"></div>
+                      </div>
+                    </div>
+                    <div style="display:flex;flex-direction:column;font-size:1.1cqw">
+                      <div data-sheet-row style="display:grid;grid-template-columns:1fr 1.4fr 1.2fr auto;gap:1cqw;align-items:center;padding:.9cqw 0;border-bottom:1px solid #EEF2F8"><span style="font-weight:600">#1042</span><span style="color:#5B6475">Loja Baixa</span><span>12.400 MT</span><span style="font-size:.95cqw;padding:.3cqw .9cqw;border-radius:2cqw;background:#E9F7FE;color:#2B3990;font-weight:600">Pago</span></div>
+                      <div data-sheet-row style="display:grid;grid-template-columns:1fr 1.4fr 1.2fr auto;gap:1cqw;align-items:center;padding:.9cqw 0;border-bottom:1px solid #EEF2F8"><span style="font-weight:600">#1041</span><span style="color:#5B6475">Loja Matola</span><span>8.750 MT</span><span style="font-size:.95cqw;padding:.3cqw .9cqw;border-radius:2cqw;background:#E9F7FE;color:#2B3990;font-weight:600">Pago</span></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div style="position:absolute;left:70cqw;top:28cqw;width:28cqw;height:58cqw;border-radius:5cqw;background:#0F1A3D;padding:.9cqw;box-shadow:0 4cqw 10cqw -3cqw rgba(15,26,61,.5)">
+                <div data-sheet-phone style="position:relative;width:100%;height:100%;border-radius:4.2cqw;background:#fff;overflow:hidden;font-size:1.2cqw;line-height:1.3;color:#111;display:flex;flex-direction:column">
+                  <div style="position:absolute;top:.9cqw;left:50%;transform:translateX(-50%);width:7.5cqw;height:2.1cqw;border-radius:2cqw;background:#0F1A3D"></div>
+                  <div style="padding:1.2cqw 2.4cqw 0;font-size:1.05cqw;font-weight:600">9:41</div>
+                  <div style="padding:2.6cqw 2cqw 0"><div style="font-size:2cqw;font-weight:650;letter-spacing:-.02em">Olá, Ana</div><div style="font-size:1.05cqw;color:#5B6475;margin-top:.2cqw">Resumo de hoje</div></div>
+                  <div style="margin:1.6cqw 2cqw 0;border-radius:2cqw;padding:1.6cqw;background:linear-gradient(160deg,#2B3990 0%,#2889C9 70%,#27A9E1 100%);color:#fff">
+                    <div style="font-size:1.05cqw;opacity:.85">Vendas hoje</div>
+                    <div data-inst="value" style="font-size:2.5cqw;font-weight:650;letter-spacing:-.02em;margin-top:.3cqw;font-variant-numeric:tabular-nums">48.250 MT</div>
+                    <div style="font-size:1cqw;margin-top:.5cqw;opacity:.9">▲ 12% vs. ontem</div>
+                  </div>
+                  <div style="padding:1.8cqw 2cqw .6cqw;font-size:1.15cqw;font-weight:600">Encomendas recentes</div>
+                  <div style="display:flex;flex-direction:column;padding:0 2cqw;gap:.2cqw">
+                    <div style="display:flex;align-items:center;gap:1cqw;padding:.8cqw 0;border-bottom:1px solid #EEF2F8"><span style="width:3cqw;height:3cqw;border-radius:.9cqw;background:#E9F7FE;display:flex;align-items:center;justify-content:center;font-size:1cqw;font-weight:600;color:#2B3990">MJ</span><span style="flex:1">Maria J.</span><span style="font-weight:600">1.850 MT</span></div>
+                    <div style="display:flex;align-items:center;gap:1cqw;padding:.8cqw 0;border-bottom:1px solid #EEF2F8"><span style="width:3cqw;height:3cqw;border-radius:.9cqw;background:#E9F7FE;display:flex;align-items:center;justify-content:center;font-size:1cqw;font-weight:600;color:#2B3990">TC</span><span style="flex:1">Tomás C.</span><span style="font-weight:600">3.200 MT</span></div>
+                    <div style="display:flex;align-items:center;gap:1cqw;padding:.8cqw 0"><span style="width:3cqw;height:3cqw;border-radius:.9cqw;background:#E9F7FE;display:flex;align-items:center;justify-content:center;font-size:1cqw;font-weight:600;color:#2B3990">LM</span><span style="flex:1">Lúcia M.</span><span style="font-weight:600">960 MT</span></div>
+                  </div>
+                  <div style="margin-top:auto;height:5.4cqw;border-top:1px solid #EEF2F8;display:flex;align-items:center;justify-content:space-around;padding:0 1.6cqw">
+                    <span style="width:1.8cqw;height:1.8cqw;background:#00AEEF;-webkit--mask:url(assets/img/icons/house.svg) center/contain no-repeat;mask:url(assets/img/icons/house.svg) center/contain no-repeat"></span>
+                    <span style="width:1.8cqw;height:1.8cqw;background:#B4BCCB;-webkit--mask:url(assets/img/icons/trending-up.svg) center/contain no-repeat;mask:url(assets/img/icons/trending-up.svg) center/contain no-repeat"></span>
+                    <span style="width:1.8cqw;height:1.8cqw;background:#B4BCCB;-webkit--mask:url(assets/img/icons/package.svg) center/contain no-repeat;mask:url(assets/img/icons/package.svg) center/contain no-repeat"></span>
+                    <span style="width:1.8cqw;height:1.8cqw;background:#B4BCCB;-webkit--mask:url(assets/img/icons/user.svg) center/contain no-repeat;mask:url(assets/img/icons/user.svg) center/contain no-repeat"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div class="uhero__media">
-          <!-- Same card as the Serviços panel; hero-uns.js cycles it through the services list -->
-          <div class="hero-services" id="heroServices">
-          <div class="hero-card" id="heroCard">
-            <span class="hero-card__ghost" id="heroCardGhost" aria-hidden="true">01</span>
-            <p class="hero-card__kicker"><span id="heroCardNum">01</span><span id="heroCardTotal">/ 05</span></p>
-            <div class="hero-card__swap" id="heroCardSwap">
-              <p class="hero-card__name" id="heroCardName">Desenvolvimento de software</p>
-              <ul class="hero-card__tags" id="heroCardTags">
-                <li>Sistemas de gestão</li>
-                <li>Aplicativos mobile</li>
-                <li>Soluções sob medida</li>
-              </ul>
-            </div>
-            <a class="hero-card__cta" href="#contacto">Falar connosco <i aria-hidden="true">&#8599;</i></a>
-          </div>
-          <!-- Tab bar ported from the Uns2 hero (.hs__legend): shows the time left and lets the visitor pick -->
-          <ol class="hs__legend" aria-label="Escolher serviço">
-            <li><button type="button" class="is-active"><span>01</span>Software<i class="hs__bar"></i></button></li>
-            <li><button type="button"><span>02</span>Redes<i class="hs__bar"></i></button></li>
-            <li><button type="button"><span>03</span>Segurança<i class="hs__bar"></i></button></li>
-            <li><button type="button"><span>04</span>Consultoria<i class="hs__bar"></i></button></li>
-            <li><button type="button"><span>05</span>Web<i class="hs__bar"></i></button></li>
-          </ol>
-          </div>
+        <div style="margin-top:clamp(56px,6vw,88px);padding:28px 0 clamp(56px,6vw,80px);border-top:1px solid #E6ECF4;display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px 32px">
+          <div style="display:flex;align-items:center;gap:12px;font-size:16px;font-weight:500;color:#111"><span style="width:28px;height:28px;border-radius:8px;background:#EAF6FD;display:flex;align-items:center;justify-content:center"><span data-inst="check" style="width:16px;height:16px;background:#2B3990;-webkit--mask:url(assets/img/icons/check.svg) center/contain no-repeat;mask:url(assets/img/icons/check.svg) center/contain no-repeat"></span></span><span><strong style="font-weight:650">+50</strong> projetos entregues</span></div>
+          <div style="display:flex;align-items:center;gap:12px;font-size:16px;font-weight:500;color:#111"><span style="width:28px;height:28px;border-radius:8px;background:#EAF6FD;display:flex;align-items:center;justify-content:center"><span data-inst="check" style="width:16px;height:16px;background:#2B3990;-webkit--mask:url(assets/img/icons/check.svg) center/contain no-repeat;mask:url(assets/img/icons/check.svg) center/contain no-repeat"></span></span>Apps iOS e Android</div>
+          <div style="display:flex;align-items:center;gap:12px;font-size:16px;font-weight:500;color:#111"><span style="width:28px;height:28px;border-radius:8px;background:#EAF6FD;display:flex;align-items:center;justify-content:center"><span data-inst="check" style="width:16px;height:16px;background:#2B3990;-webkit--mask:url(assets/img/icons/check.svg) center/contain no-repeat;mask:url(assets/img/icons/check.svg) center/contain no-repeat"></span></span>Equipa e suporte locais</div>
+          <div style="display:flex;align-items:center;gap:12px;font-size:16px;font-weight:500;color:#111"><span style="width:28px;height:28px;border-radius:8px;background:#EAF6FD;display:flex;align-items:center;justify-content:center"><span data-inst="check" style="width:16px;height:16px;background:#2B3990;-webkit--mask:url(assets/img/icons/check.svg) center/contain no-repeat;mask:url(assets/img/icons/check.svg) center/contain no-repeat"></span></span>Soluções à medida</div>
         </div>
       </div>
-
-      <!-- scroll-down hint (intro splash only) -->
-      <button class="scroll-hint" id="scrollHint" type="button" aria-label="Descer para o site">
-        <span class="scroll-hint__arrow">
-          <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
-            <path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-              stroke-linejoin="round" />
-          </svg>
-        </span>
-      </button>
     </section>
 
     <!-- Second section ported from unitechsolution.web.app (see hero-uns.css / hero-uns.js) -->
@@ -149,7 +266,7 @@
         </div>
 
         <div class="inova__stage reveal">
-          <img class="inova__hero" src="assets/img/inovacao-hero.webp" alt="" loading="lazy">
+          <img class="inova__hero" src="assets/img/inovacao-hero.webp?v=20261008" alt="Aplicativo móvel de seguros desenvolvido pela Unitech Solution, aberto num telemóvel" width="3375" height="6000" loading="lazy">
         </div>
       </div>
     </section>
@@ -162,185 +279,198 @@
             concretos em Moçambique.</h2>
         </header>
         <div class="strip__viewport">
-          <div class="strip__rail" aria-label="14 projectos seleccionados">
-            <a class="strip-card strip-card--portrait" href="https://yentelelo.com/onboarding" target="_blank" rel="noopener">
+          <div class="strip__rail" aria-label="15 projectos seleccionados">
+            <a class="strip-card strip-card--portrait" href="#contacto">
               <div class="strip-card__float">
                 <figure class="strip-card__media strip-card__media--mockup">
-                  <img src="assets/img/yentelelo.png" alt="Painel administrativo Yentelelo" loading="lazy">
-                  <span class="strip-card__open">Visitar site <i>&#8599;</i></span>
+                  <img src="assets/img/projects/yentelelo-app.webp" width="1600" height="1371" alt="Aplicativo Yentelelo em três iPhone — boas-vindas, início com notícias e vídeos, e entrada"
+                    loading="lazy">
+                  <span class="strip-card__open">Saber mais <i>&#8599;</i></span>
                 </figure>
                 <div class="strip-card__meta">
                   <p><span>01</span>Yentelelo</p>
-                  <p>Descrição a adicionar</p>
+                  <p>Aplicativo móvel &#183; Notícias e vídeos</p>
                 </div>
               </div>
             </a>
-            <a class="strip-card strip-card--wide" href="https://eml-perfume.web.app/" target="_blank" rel="noopener">
+            <a class="strip-card strip-card--wide" href="https://yentelelo.com/onboarding" target="_blank" rel="noopener">
               <div class="strip-card__float">
                 <figure class="strip-card__media strip-card__media--mockup">
-                  <img src="assets/img/emll.png" alt="Website Eml" loading="lazy">
+                  <img src="assets/img/projects/yentelelo.webp" width="1600" height="1041" alt="Painel administrativo Yentelelo" loading="lazy">
                   <span class="strip-card__open">Visitar site <i>&#8599;</i></span>
                 </figure>
                 <div class="strip-card__meta">
-                  <p><span>02</span>Eml</p>
-                  <p>Descrição a adicionar</p>
+                  <p><span>02</span>Yentelelo &#183; Painel</p>
+                  <p>Plataforma web &#183; Painel administrativo</p>
                 </div>
               </div>
             </a>
-            <a class="strip-card strip-card--landscape" href="https://www.fmf.co.mz/" target="_blank" rel="noopener">
+            <a class="strip-card strip-card--landscape" href="https://eml-perfume.web.app/" target="_blank" rel="noopener">
               <div class="strip-card__float">
                 <figure class="strip-card__media strip-card__media--mockup">
-                  <img src="assets/img/fmff.png" alt="Website da Federação Moçambicana de Futebol" loading="lazy">
+                  <img src="assets/img/projects/emll.webp" width="1600" height="1250" alt="Website Eml" loading="lazy">
                   <span class="strip-card__open">Visitar site <i>&#8599;</i></span>
                 </figure>
                 <div class="strip-card__meta">
-                  <p><span>03</span>FMF</p>
-                  <p>Descrição a adicionar</p>
+                  <p><span>03</span>Eml</p>
+                  <p>Website &#183; Perfumaria</p>
                 </div>
               </div>
             </a>
-            <a class="strip-card strip-card--square" href="https://fundacaocantona.ong/pt/" target="_blank" rel="noopener">
+            <a class="strip-card strip-card--square" href="https://www.fmf.co.mz/" target="_blank" rel="noopener">
               <div class="strip-card__float">
                 <figure class="strip-card__media strip-card__media--mockup">
-                  <img src="assets/img/fundacao-cantona.png" alt="Website da Fundação Cantoná" loading="lazy">
+                  <img src="assets/img/projects/fmff.webp" width="1600" height="1214" alt="Website da Federação Moçambicana de Futebol" loading="lazy">
                   <span class="strip-card__open">Visitar site <i>&#8599;</i></span>
                 </figure>
                 <div class="strip-card__meta">
-                  <p><span>04</span>Fundação Cantoná</p>
-                  <p>Descrição a adicionar</p>
+                  <p><span>04</span>FMF</p>
+                  <p>Website &#183; Futebol</p>
                 </div>
               </div>
             </a>
-            <a class="strip-card strip-card--tall" href="https://kombela.co.mz/" target="_blank" rel="noopener">
+            <a class="strip-card strip-card--tall" href="https://fundacaocantona.ong/pt/" target="_blank" rel="noopener">
               <div class="strip-card__float">
                 <figure class="strip-card__media strip-card__media--mockup">
-                  <img src="assets/img/kombela.png" alt="Aplicativo Kombela — ecrãs de pagamento e serviços"
+                  <img src="assets/img/projects/fundacao-cantona.webp" width="1600" height="1041" alt="Website da Fundação Cantoná" loading="lazy">
+                  <span class="strip-card__open">Visitar site <i>&#8599;</i></span>
+                </figure>
+                <div class="strip-card__meta">
+                  <p><span>05</span>Fundação Cantoná</p>
+                  <p>Website &#183; Fundação</p>
+                </div>
+              </div>
+            </a>
+            <a class="strip-card strip-card--portrait" href="https://kombela.co.mz/" target="_blank" rel="noopener">
+              <div class="strip-card__float">
+                <figure class="strip-card__media strip-card__media--mockup">
+                  <img src="assets/img/projects/kombela.webp" width="1600" height="1111" alt="Aplicativo Kombela — ecrãs de pagamento e serviços"
                     loading="lazy">
                   <span class="strip-card__open">Visitar site <i>&#8599;</i></span>
                 </figure>
                 <div class="strip-card__meta">
-                  <p><span>05</span>Kombela</p>
-                  <p>Descrição a adicionar</p>
+                  <p><span>06</span>Kombela</p>
+                  <p>Aplicativo móvel &#183; Compras e entregas</p>
                 </div>
               </div>
             </a>
-            <a class="strip-card strip-card--portrait" href="https://proseguros.co.mz/" target="_blank" rel="noopener">
+            <a class="strip-card strip-card--wide" href="https://proseguros.co.mz/" target="_blank" rel="noopener">
               <div class="strip-card__float">
                 <figure class="strip-card__media strip-card__media--mockup">
-                  <img src="assets/img/pro-seguros.png" alt="Website Pro Seguros — seguro automóvel " loading="lazy">
+                  <img src="assets/img/projects/pro-seguros.webp?v=20261009" width="1600" height="1041" alt="Website Pro Seguros — seguro automóvel " loading="lazy">
                   <span class="strip-card__open">Visitar site <i>&#8599;</i></span>
                 </figure>
                 <div class="strip-card__meta">
-                  <p><span>06</span>Pro Seguros</p>
-                  <p>Descrição a adicionar</p>
-                </div>
-              </div>
-            </a>
-            <a class="strip-card strip-card--wide" href="#contacto">
-              <div class="strip-card__float">
-                <figure class="strip-card__media strip-card__media--mockup">
-                  <img src="assets/img/viva-sem-medo.png" alt="Aplicativo Ganha Mais — seguro automóvel e funeral"
-                    loading="lazy">
-                  <span class="strip-card__open">Saber mais <i>&#8599;</i></span>
-                </figure>
-                <div class="strip-card__meta">
-                  <p><span>07</span>Ganha Mais</p>
-                  <p>Descrição a adicionar</p>
-                </div>
-              </div>
-            </a>
-            <a class="strip-card strip-card--landscape"
-              href="https://play.google.com/store/apps/details?id=com.uniticket.app" target="_blank" rel="noopener">
-              <div class="strip-card__float">
-                <figure class="strip-card__media strip-card__media--mockup">
-                  <img src="assets/img/uniticket-mockup.png"
-                    alt="Aplicativo Uniticket — compra de bilhetes de transporte distrital e provincial" loading="lazy">
-                  <span class="strip-card__open">Ver no Play Store <i>&#8599;</i></span>
-                </figure>
-                <div class="strip-card__meta">
-                  <p><span>08</span>Uniticket</p>
-                  <p>Aplicativo móvel &#183; Transporte</p>
-                </div>
-              </div>
-            </a>
-            <a class="strip-card strip-card--square" href="#contacto">
-              <div class="strip-card__float">
-                <figure class="strip-card__media strip-card__media--mockup">
-                  <img src="assets/img/uniticket-painel-mockup.png"
-                    alt="Painel administrativo Uniticket — gestão de rotas, cobradores e vendas" loading="lazy">
-                  <span class="strip-card__open">Pedir demonstração <i>&#8599;</i></span>
-                </figure>
-                <div class="strip-card__meta">
-                  <p><span>09</span>Uniticket &#183; Painel</p>
-                  <p>Plataforma web &#183; Gestão</p>
-                </div>
-              </div>
-            </a>
-            <a class="strip-card strip-card--tall" href="#contacto">
-              <div class="strip-card__float">
-                <figure class="strip-card__media strip-card__media--mockup">
-                  <img src="assets/img/unitech-workflow-mockup.png"
-                    alt="Unitech Workflow — sistema de automação de requisições, aprovações e facturação"
-                    loading="lazy">
-                  <span class="strip-card__open">Pedir demonstração <i>&#8599;</i></span>
-                </figure>
-                <div class="strip-card__meta">
-                  <p><span>10</span>Unitech Workflow</p>
-                  <p>Automação &#183; Gestão interna</p>
-                </div>
-              </div>
-            </a>
-            <a class="strip-card strip-card--portrait"
-              href="https://play.google.com/store/apps/details?id=com.mycompany.malachiapp01" target="_blank"
-              rel="noopener">
-              <div class="strip-card__float">
-                <figure class="strip-card__media strip-card__media--mockup">
-                  <img src="assets/img/malachi-mockup.png"
-                    alt="Malachi Plant Identifier — identificação de plantas e diagnóstico de doenças por IA"
-                    loading="lazy">
-                  <span class="strip-card__open">Ver no Play Store <i>&#8599;</i></span>
-                </figure>
-                <div class="strip-card__meta">
-                  <p><span>11</span>Malachi Plant Identifier</p>
-                  <p>Aplicativo móvel &#183; Inteligência Artificial</p>
-                </div>
-              </div>
-            </a>
-            <a class="strip-card strip-card--wide" href="#contacto">
-              <div class="strip-card__float">
-                <figure class="strip-card__media strip-card__media--mockup">
-                  <img src="assets/img/dfs-crm.png" alt="DFS CRM — painel de gestão empresarial" loading="lazy">
-                  <span class="strip-card__open">Saber mais <i>&#8599;</i></span>
-                </figure>
-                <div class="strip-card__meta">
-                  <p><span>12</span>DFS CRM</p>
-                  <p>Descrição a adicionar</p>
+                  <p><span>07</span>Pro Seguros</p>
+                  <p>Website &#183; Seguros</p>
                 </div>
               </div>
             </a>
             <a class="strip-card strip-card--landscape" href="#contacto">
               <div class="strip-card__float">
                 <figure class="strip-card__media strip-card__media--mockup">
-                  <img src="assets/img/flexpress-mockup.png" alt="Aplicativo Flexpress — rotas de entrega optimizadas"
+                  <img src="assets/img/projects/viva-sem-medo.webp" width="797" height="1600" alt="Aplicativo Ganha Mais — seguro automóvel e funeral"
                     loading="lazy">
                   <span class="strip-card__open">Saber mais <i>&#8599;</i></span>
                 </figure>
                 <div class="strip-card__meta">
-                  <p><span>13</span>Flexpress</p>
-                  <p>Descrição a adicionar</p>
+                  <p><span>08</span>Ganha Mais</p>
+                  <p>Aplicativo móvel &#183; Seguros</p>
+                </div>
+              </div>
+            </a>
+            <a class="strip-card strip-card--square"
+              href="https://play.google.com/store/apps/details?id=com.uniticket.app" target="_blank" rel="noopener">
+              <div class="strip-card__float">
+                <figure class="strip-card__media strip-card__media--mockup">
+                  <img src="assets/img/projects/uniticket.webp" width="796" height="1600"
+                    alt="Aplicativo Uniticket — compra de bilhetes de transporte distrital e provincial" loading="lazy">
+                  <span class="strip-card__open">Ver no Play Store <i>&#8599;</i></span>
+                </figure>
+                <div class="strip-card__meta">
+                  <p><span>09</span>Uniticket</p>
+                  <p>Aplicativo móvel &#183; Transporte</p>
+                </div>
+              </div>
+            </a>
+            <a class="strip-card strip-card--tall" href="#contacto">
+              <div class="strip-card__float">
+                <figure class="strip-card__media strip-card__media--mockup">
+                  <img src="assets/img/projects/uniticket-painel.webp" width="978" height="573"
+                    alt="Painel administrativo Uniticket — gestão de rotas, cobradores e vendas" loading="lazy">
+                  <span class="strip-card__open">Pedir demonstração <i>&#8599;</i></span>
+                </figure>
+                <div class="strip-card__meta">
+                  <p><span>10</span>Uniticket &#183; Painel</p>
+                  <p>Plataforma web &#183; Gestão</p>
+                </div>
+              </div>
+            </a>
+            <a class="strip-card strip-card--portrait" href="#contacto">
+              <div class="strip-card__float">
+                <figure class="strip-card__media strip-card__media--mockup">
+                  <img src="assets/img/projects/unitech-workflow.webp" width="1600" height="1286"
+                    alt="Unitech Workflow — sistema de automação de requisições, aprovações e facturação"
+                    loading="lazy">
+                  <span class="strip-card__open">Pedir demonstração <i>&#8599;</i></span>
+                </figure>
+                <div class="strip-card__meta">
+                  <p><span>11</span>Unitech Workflow</p>
+                  <p>Automação &#183; Gestão interna</p>
+                </div>
+              </div>
+            </a>
+            <a class="strip-card strip-card--wide"
+              href="https://play.google.com/store/apps/details?id=com.mycompany.malachiapp01" target="_blank"
+              rel="noopener">
+              <div class="strip-card__float">
+                <figure class="strip-card__media strip-card__media--mockup">
+                  <img src="assets/img/projects/malachi.webp" width="1600" height="1286"
+                    alt="Malachi Plant Identifier — identificação de plantas e diagnóstico de doenças por IA"
+                    loading="lazy">
+                  <span class="strip-card__open">Ver no Play Store <i>&#8599;</i></span>
+                </figure>
+                <div class="strip-card__meta">
+                  <p><span>12</span>Malachi Plant Identifier</p>
+                  <p>Aplicativo móvel &#183; Inteligência Artificial</p>
+                </div>
+              </div>
+            </a>
+            <a class="strip-card strip-card--landscape" href="#contacto">
+              <div class="strip-card__float">
+                <figure class="strip-card__media strip-card__media--mockup">
+                  <img src="assets/img/projects/dfs-crm.webp" width="1600" height="1032" alt="DFS CRM — painel de gestão empresarial" loading="lazy">
+                  <span class="strip-card__open">Saber mais <i>&#8599;</i></span>
+                </figure>
+                <div class="strip-card__meta">
+                  <p><span>13</span>DFS CRM</p>
+                  <p>Plataforma web &#183; Gestão empresarial</p>
                 </div>
               </div>
             </a>
             <a class="strip-card strip-card--square" href="#contacto">
               <div class="strip-card__float">
                 <figure class="strip-card__media strip-card__media--mockup">
-                  <img src="assets/img/lacos-corretora.png" alt="Website Laços Corretora — seguro automóvel"
+                  <img src="assets/img/projects/flexpress.webp" width="878" height="1600" alt="Aplicativo Flexpress — rotas de entrega optimizadas"
                     loading="lazy">
                   <span class="strip-card__open">Saber mais <i>&#8599;</i></span>
                 </figure>
                 <div class="strip-card__meta">
-                  <p><span>14</span>Laços Corretora</p>
-                  <p>Descrição a adicionar</p>
+                  <p><span>14</span>Flexpress</p>
+                  <p>Aplicativo móvel &#183; Entregas</p>
+                </div>
+              </div>
+            </a>
+            <a class="strip-card strip-card--tall" href="#contacto">
+              <div class="strip-card__float">
+                <figure class="strip-card__media strip-card__media--mockup">
+                  <img src="assets/img/projects/lacos-corretora.webp" width="1600" height="1041" alt="Website Laços Corretora — seguro automóvel"
+                    loading="lazy">
+                  <span class="strip-card__open">Saber mais <i>&#8599;</i></span>
+                </figure>
+                <div class="strip-card__meta">
+                  <p><span>15</span>Laços Corretora</p>
+                  <p>Website &#183; Seguros</p>
                 </div>
               </div>
             </a>
@@ -528,7 +658,7 @@
           <p class="contact__avail">
             <span class="contact__avail-dot" aria-hidden="true"></span>Disponíveis para novos projectos
           </p>
-          <p class="contact__hook">Tem um projecto em mente?</p>
+          <h2 class="contact__hook">Tem um projecto em mente?</h2>
           <a class="contact__mail" href="mailto:comercial@unitechsolution.co.mz">comercial@unitechsolution.co.mz</a>
           <p class="contact__sub">Conte-nos sobre o seu projecto. A nossa equipa entra em contacto consigo brevemente.
           </p>
@@ -612,10 +742,12 @@
     </section>
   </main>
 
+  <!-- The footer waits under the page: the last section lifts off it like a sheet (styles.css "FOOTER REVEAL") -->
   <footer class="footer">
+    <div class="footer__shade" aria-hidden="true"></div>
     <div class="footer__grid">
       <div class="footer__brand">
-        <img class="footer__brand-logo" src="assets/img/logo.png" alt="Unitech Solution">
+        <img class="footer__brand-logo" src="assets/img/logo.png" width="2410" height="1276" alt="Unitech Solution">
         <p>Soluções tecnológicas completas.<br>Software, redes, segurança &amp; consultoria.</p>
       </div>
       <nav class="footer__col" aria-label="Navegação de rodapé">
@@ -632,22 +764,22 @@
       </nav>
       <div class="footer__col">
         <p class="footer__col-title">Contacto</p>
-        <a href="mailto:comercial@unitechsolution.co.mz">comercial@unitechsolution.co.mz</a>
-        <p>Av. Malhangalene Q5, Maputo, Moçambique</p>
+        <a href="mailto:comercial@unitechsolution.co.mz">comercial@<wbr>unitechsolution.co.mz</a>
+        <p>Bairro da Coop, KaMpfumo, Rua 1408, Maputo, Moçambique</p>
       </div>
     </div>
     <div class="footer__meta">
       <p>&#169;2026 Unitech Solution</p>
+      <p>Todos os direitos reservados</p>
+    </div>
+    <div class="footer__end">
+      <div class="footer__wordmark" aria-hidden="true">
+        <span class="footer__giant">uni<em>tech</em></span>
+      </div>
       <nav class="footer__legal" aria-label="Informações legais">
         <a href="#">Termos e condições</a>
         <a href="#">Política de privacidade</a>
       </nav>
-      <p>Todos os direitos reservados</p>
-    </div>
-    <div class="footer__wordmark" aria-hidden="true">
-      <img class="footer__logo" src="assets/img/logo.png" alt="">
-      <span class="footer__giant">uni<em>tech</em></span>
-      <span class="footer__giant-sub">solution</span>
     </div>
   </footer>
 
@@ -752,10 +884,11 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.11/dist/lenis.min.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
-  <script src="main.js"></script>
-  <script src="hero-uns.js"></script>
+  <!-- Firebase/Firestore SDKs removed (2026-10-06): only the #proposal form used them and it is no longer reachable;
+       hero-uns.js checks window.firebase, so re-add both scripts here if that form comes back. -->
+  <script src="main.js?v=20261008"></script>
+  <script src="hero-uns.js?v=20261008"></script>
+  <script src="hero-lp.js?v=20261008"></script>
 </body>
 
 </html>

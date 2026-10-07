@@ -1,157 +1,25 @@
 /* ============================================================
-   UNS HERO — first slide + intro splash + proposal page, ported
-   from the unitechsolution.web.app source (github.com/lutherbanze/Uns2,
-   main.js). Logic is the original; the only changes are marked
-   "this site": .hero → .uhero, asset paths, boot signal, scroll lock
-   through Lenis, Mozambique as the default dial code.
+   UNS HERO — idea field, proposal page and page chrome, ported from the
+   unitechsolution.web.app source (github.com/lutherbanze/Uns2, main.js).
+   Logic is the original; the changes are marked "this site": .hero → .uhero,
+   asset paths, scroll lock through Lenis, Mozambique as the default dial code.
+   The first slide's 3D project ring lives in hero-orbit.js.
    ============================================================ */
 (function () {
   "use strict";
 
   const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const $ = (s, r = document) => r.querySelector(s);
-  if (!$(".uhero")) return;
+  // (the first slide is now hero-lp.js; this file keeps the proposal page, the FAB, the nav state and the reveals)
 
   /* this site: the original locked scrolling with body{overflow:hidden}; here the
      page scrolls on <html> through Lenis, so lock both from one place. */
   let proposalOpen = false;
   function syncLock() {
-    const lock = proposalOpen || document.body.classList.contains("cinema");
+    const lock = proposalOpen;
     document.documentElement.classList.toggle("uns-lock", lock);
     if (window.__lenis) lock ? window.__lenis.stop() : window.__lenis.start();
   }
-
-  /* ---------- Intro splash → standard landing ----------
-     The site opens as a full-screen video background: the headline types the
-     phrases once, settles on "Conte-nos a sua ideia.", and a scroll hint shows.
-     First scroll / tap / scroll-key dismisses the splash → normal landing. */
-  (function () {
-    const typed = $("#typed");
-    const form = $("#askForm");
-    const input = $("#askInput");
-    const hero = $(".uhero");
-    const hint = $("#scrollHint");
-    if (!typed) return;
-
-    const phrases = [
-      "Where ideas become products.",
-      "Innovate. Create. Lead.",
-      "Turning challenges into opportunities.",
-    ];
-    const FINAL = "Conte-nos a sua ideia.";
-
-    let timer = null;
-    function clear() { if (timer) { clearTimeout(timer); timer = null; } }
-
-    function typeOut(text, done) {
-      let i = 0;
-      (function step() {
-        typed.textContent = text.slice(0, i);
-        if (i < text.length) {
-          const ch = text.charAt(i);
-          i++;
-          const delay = ch === "." ? 240 : ch === " " ? 66 : 40 + Math.random() * 50;
-          timer = setTimeout(step, delay);
-        } else if (done) done();
-      })();
-    }
-    function eraseOut(done) {
-      const text = typed.textContent;
-      let i = text.length;
-      (function step() {
-        typed.textContent = text.slice(0, i);
-        if (i > 0) { i--; timer = setTimeout(step, 16 + Math.random() * 14); }
-        else if (done) done();
-      })();
-    }
-
-    function showHint() { if (hint) hint.classList.add("is-on"); }
-    function revealField() { if (form) form.classList.add("is-in"); }
-
-    // one round of the phrases, then settle on FINAL and stop
-    function intro() {
-      clear();
-      let p = 0;
-      (function nextPhrase() {
-        if (p < phrases.length) {
-          typeOut(phrases[p], () => {
-            timer = setTimeout(() => eraseOut(() => { p++; nextPhrase(); }), 950);
-          });
-        } else {
-          revealField();
-          typeOut(FINAL, showHint);   // settles here; the scroll hint then appears
-        }
-      })();
-    }
-
-    /* leave the splash → standard two-column landing */
-    let dismissed = false;
-    function dismiss() {
-      if (dismissed) return;
-      dismissed = true;
-      clear();
-      typed.textContent = FINAL;
-      document.body.classList.remove("splash", "cinema");
-      if (hero) hero.classList.remove("splash", "cinema");
-      if (hint) hint.classList.remove("is-on");
-      revealField();
-      syncLock();
-    }
-
-    /* boot into the splash */
-    function start() {
-      document.body.classList.add("splash", "cinema");
-      if (hero) hero.classList.add("splash", "cinema");
-      syncLock();
-      if (reduce) { typed.textContent = FINAL; revealField(); showHint(); return; }
-      intro();
-    }
-    let booted = false;
-    function boot() { if (booted) return; booted = true; start(); }
-    // this site: start once its own preloader hands over (uns:ready), with a fallback
-    window.addEventListener("uns:ready", () => setTimeout(boot, 520));
-    // main.js loads first and may already have signalled before this listener existed
-    if (window.__unsReady) setTimeout(boot, 520);
-    if (document.documentElement.classList.contains("motion-off")) boot();
-    setTimeout(boot, 5200);
-
-    /* first scroll / tap / scroll-key dismisses the splash */
-    function onIntent(e) {
-      if (!document.body.classList.contains("splash")) return;
-      if (e.type === "keydown") {
-        const k = e.key;
-        if (k !== " " && k !== "ArrowDown" && k !== "PageDown" && k !== "Enter" && k !== "ArrowRight") return;
-      }
-      dismiss();
-    }
-    ["wheel", "touchmove", "pointerdown", "keydown"].forEach((ev) =>
-      window.addEventListener(ev, onIntent, { passive: true })
-    );
-    if (hint) hint.addEventListener("click", dismiss);
-
-    /* in the landing, tapping the field returns to the cinema (video-bg) mode */
-    let composing = false;
-    function enterCinema() {
-      if (composing || document.body.classList.contains("splash")) return;
-      composing = true;
-      document.body.classList.add("compose", "cinema");
-      if (hero) hero.classList.add("compose", "cinema");
-      syncLock();
-    }
-    function exitCinema() {
-      if (!composing) return;
-      composing = false;
-      document.body.classList.remove("compose", "cinema");
-      if (hero) hero.classList.remove("compose", "cinema");
-      if (input) input.blur();
-      syncLock();
-    }
-    if (input) input.addEventListener("focus", enterCinema);
-    document.addEventListener("keydown", (e) => { if (e.key === "Escape") exitCinema(); });
-    if (hero) hero.addEventListener("mousedown", (e) => {
-      if (composing && !e.target.closest(".uhero__left")) exitCinema();
-    });
-  })();
 
   /* ---------- Idea field → Proposal page → Firestore ---------- */
   (function () {
@@ -288,10 +156,6 @@
     function openProposal(idea) {
       if (!proposal) return;
       if (f.idea && idea) f.idea.value = idea;
-      // leave any cinema/splash state behind so closing returns to a clean landing
-      document.body.classList.remove("splash", "cinema", "compose");
-      const hero = $(".uhero");
-      if (hero) hero.classList.remove("splash", "cinema", "compose");
       proposal.classList.add("is-open");
       proposal.setAttribute("aria-hidden", "false");
       proposalOpen = true; syncLock();
@@ -394,57 +258,6 @@
     }
   })();
 
-  /* ---------- Hero card (this site) — replaces the source's video carousel.
-     Cycles the card through the services listed in the Serviços section. ---------- */
-  (function () {
-    const card = $("#heroCard");
-    if (!card) return;
-    const items = Array.from(document.querySelectorAll(".services__item")).map((li) => ({
-      name: (li.querySelector(".services__name") || {}).textContent.trim(),
-      tags: (li.dataset.tags || "").split("|").filter(Boolean),
-    }));
-    if (items.length < 2) return;
-    const num = $("#heroCardNum"), ghost = $("#heroCardGhost"), total = $("#heroCardTotal");
-    const name = $("#heroCardName"), tags = $("#heroCardTags");
-    if (total) total.textContent = "/ " + String(items.length).padStart(2, "0");
-
-    function write(i) {
-      const n = String(i + 1).padStart(2, "0");
-      num.textContent = n; ghost.textContent = n;
-      name.textContent = items[i].name;
-      tags.innerHTML = "";
-      items[i].tags.forEach((t) => { const li = document.createElement("li"); li.textContent = t; tags.appendChild(li); });
-    }
-
-    /* tab bar (ported from Uns2 services.js): the active tab's bar fills in CSS;
-       when it ends the next service comes in. Hovering pauses it, clicking picks. */
-    const root = $("#heroServices");
-    const tabs = Array.from(document.querySelectorAll("#heroServices .hs__legend button"));
-    let active = 0, swapTimer = null;
-    function go(n) {
-      const prev = active;
-      active = (n + items.length) % items.length;
-      if (active === prev) return;
-      tabs.forEach((t, i) => {
-        t.classList.toggle("is-active", i === active);
-        t.classList.toggle("is-done", i < active);
-      });
-      clearTimeout(swapTimer);
-      card.classList.add("is-swapping");
-      swapTimer = setTimeout(() => { write(active); card.classList.remove("is-swapping"); }, 340);
-    }
-    tabs.forEach((t, i) => {
-      t.addEventListener("click", () => go(i));
-      const bar = t.querySelector(".hs__bar");
-      if (bar) bar.addEventListener("animationend", () => { if (i === active) go(active + 1); });
-    });
-    write(0);
-    if (reduce && root) root.classList.add("is-static");
-    document.addEventListener("visibilitychange", () => {
-      if (root) root.classList.toggle("is-paused", document.hidden);
-    });
-  })();
-
   /* ---------- Hero idea field → collapses into a floating FAB on scroll ---------- */
   (function () {
     const form = $("#askForm");
@@ -454,9 +267,6 @@
     let ticking = false;
     function update() {
       ticking = false;
-      // inactive during the intro splash and the centred cinema/compose mode
-      if (document.body.classList.contains("splash") || document.body.classList.contains("cinema")) return;
-
       // nothing happens until the field reaches the header — then it dissolves into it
       const top = form.getBoundingClientRect().top;
       const fadeStart = 178;   // field top below this → fully visible

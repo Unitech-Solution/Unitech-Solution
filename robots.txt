@@ -1,0 +1,5 @@
+# Unitech Solution — everything is public; the sitemap lists the page.
+User-agent: *
+Allow: /
+
+Sitemap: https://unitech-solution.web.app/sitemap.xml

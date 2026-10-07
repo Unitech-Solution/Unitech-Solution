@@ -1,8 +1,3 @@
 @echo off
-title Unitech - Site Local
-cd /d "%~dp0"
-start "" http://localhost:5500/index.html
-node serve.js
-echo.
-echo O servidor parou.
-pause
+rem Substituido por "Rodar site.bat" (abre o browser so quando o site esta pronto).
+call "%~dp0Rodar site.bat"

@@ -1,0 +1,167 @@
+/* ============================================================
+   FIRST SLIDE — the hero of the unitech-landing-page project
+   (Downloads\unitech-landing-page: src/components/Hero.tsx,
+   HeroTitulo.tsx, HeroWaves.tsx and src/styles.css), converted from
+   React to static HTML/CSS/JS. As in the original, most of its look is
+   in inline styles in index.html; this file carries what the original
+   kept in its stylesheet. Behaviour: hero-lp.js.
+   ============================================================ */
+
+/* ---- their font: Inter, variable (weights 400–800, optical sizes 14–32), served from this site ----
+   (files from Google Fonts v20, latin + latin-ext). The nav and the first slide use its optical sizes; the rest of
+   the site keeps the text cut it always had. */
+@font-face { font-family: 'Inter'; font-style: normal; font-weight: 400 800; font-display: swap; src: url(assets/fonts/inter-latin-ext.woff2) format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: 'Inter'; font-style: normal; font-weight: 400 800; font-display: swap; src: url(assets/fonts/inter-latin.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: 'Inter'; font-style: italic; font-weight: 400 800; font-display: swap; src: url(assets/fonts/inter-italic-latin-ext.woff2) format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: 'Inter'; font-style: italic; font-weight: 400 800; font-display: swap; src: url(assets/fonts/inter-italic-latin.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+body { font-optical-sizing: none; }
+
+/* metric-adjusted fallback, so the title does not re-wrap when Inter arrives */
+@font-face { font-family: "Inter fallback"; src: local("Segoe UI"), local("Helvetica Neue"), local("Arial"); size-adjust: 98.1%; }
+
+.lp-hero {
+  --lp-nav: 72px;                                  /* the nav bar (also theirs) */
+  --ease-acorda: cubic-bezier(.16, 1, .3, 1);
+  background: #fff;
+  color: #111;
+  font-family: 'Inter', 'Inter fallback', system-ui, -apple-system, sans-serif;
+  font-optical-sizing: auto;
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+.lp-hero h1 { overflow-wrap: break-word; }
+.lp-hero :focus-visible { outline: 2px solid #0079AE; outline-offset: 3px; }
+.lp-hero ::selection { background: #00AEEF; color: #0F1A3D; }
+
+/* ---- buttons ---- */
+.lp-hero .hover-btn-hero, .lp-hero .hover-btn-outline {
+  line-height: 1.2;
+  transition: transform .13s var(--ease-acorda), box-shadow .2s var(--ease-acorda), border-color .2s, background .2s, color .2s !important;
+}
+@media (hover: hover) {
+  .lp-hero .hover-btn-hero:hover { transform: translateY(-2px) !important; box-shadow: 0 16px 36px -14px rgba(0, 174, 239, 1) !important; color: #fff !important; }
+  .lp-hero .hover-btn-outline:hover { border-color: #00AEEF !important; transform: translateY(-2px) !important; color: #111 !important; }
+}
+.lp-hero .hover-btn-hero:active { transform: translateY(1px) !important; box-shadow: 0 4px 14px -8px rgba(0, 174, 239, .9) !important; }
+.lp-hero .hover-btn-outline:active { transform: translateY(1px) !important; }
+
+/* ---- the waves behind the hero (hero-lp.js draws them with WebGL2) ----
+   The original runs them 5vw under its next section's diagonal; here the next section is white, so the sea
+   fades out at the bottom of the slide instead of ending in a straight line. */
+.lp-hero .hero-ondas {
+  position: absolute; inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  opacity: 0;
+  transition: opacity 1.4s var(--ease-acorda) .4s;
+  -webkit-mask-image: linear-gradient(to bottom, #000 0, #000 82%, transparent 100%);
+          mask-image: linear-gradient(to bottom, #000 0, #000 82%, transparent 100%);
+}
+.lp-hero .hero-ondas.is-on { opacity: 1; }
+.lp-hero .hero-ondas canvas { display: block; width: 100%; height: 100%; }
+@media (prefers-reduced-motion: reduce) { .lp-hero .hero-ondas { transition: none; } }
+
+/* ---- the title types itself once (hero-lp.js) ----
+   The whole title is always in the HTML; the effect only reveals it. It hides while waiting for the effect
+   only on an armed page, and never for more than 1.2 s. */
+html[data-wake="armed"] .lp-hero [data-tw="espera"] { visibility: hidden; animation: tw-mostra 0s linear 1.2s forwards; }
+@keyframes tw-mostra { to { visibility: visible; } }
+.lp-hero .tw-cursor { position: absolute; width: max(2px, .055em); height: .78em; margin: .13em 0 0 .05em; border-radius: 1px; background: #0079AE; }
+.lp-hero [data-tw="cursor"] .tw-cursor { animation: tw-pisca .9s steps(1, end) infinite; }
+@keyframes tw-pisca { 50% { opacity: 0; } }
+
+/* ==========================================================================
+   Instruments — "the panel that wakes up"
+   Awake is the default. The sleeping state only exists inside html[data-wake="armed"], set before the first
+   paint and taken over by hero-lp.js; and only with prefers-reduced-motion: no-preference.
+   ========================================================================== */
+.lp-hero [data-inst] { transition: background .55s var(--ease-acorda), box-shadow .55s var(--ease-acorda), opacity .45s var(--ease-acorda), transform .65s var(--ease-acorda); transition-delay: calc(var(--i, 0) * 45ms); }
+.lp-hero [data-inst="bar"] { transform-origin: bottom; }
+@media (prefers-reduced-motion: no-preference) {
+  html[data-wake="armed"] .lp-hero [data-inst="bar"]:not(.is-awake) { transform: scaleY(0); }
+  html[data-wake="armed"] .lp-hero [data-inst="value"]:not(.is-awake) { opacity: 0; }
+  html[data-wake="armed"] .lp-hero [data-inst="check"]:not(.is-awake) { opacity: 0; transform: scale(.6); }
+}
+
+/* Hero — "the spreadsheet becomes a dashboard": the mock-up starts as a spreadsheet and reorganises itself
+   into the panel. */
+.lp-hero [data-sheet-grid] {
+  position: absolute; inset: 0; pointer-events: none; opacity: 0; z-index: 1;
+  background-image: linear-gradient(to right, #C2CEE0 1px, transparent 1px), linear-gradient(to bottom, #C2CEE0 1px, transparent 1px);
+  background-size: 4.6cqw 2.1cqw;
+  transition: opacity .4s var(--ease-acorda) .35s;
+}
+.lp-hero [data-sheet-grid] ~ * { position: relative; z-index: 2; }
+.lp-hero [data-sheet-kpi] { transition: transform .55s var(--ease-acorda) .3s, background-color .5s var(--ease-acorda) .3s, border-color .5s var(--ease-acorda) .3s, border-radius .5s var(--ease-acorda) .3s; }
+.lp-hero [data-sheet-panel] { transition: background-color .5s var(--ease-acorda) .3s, border-color .5s var(--ease-acorda) .3s, border-radius .5s var(--ease-acorda) .3s; }
+.lp-hero [data-sheet-row] { transition: background-color .5s var(--ease-acorda) .4s; }
+.lp-hero [data-sheet-ink], .lp-hero [data-sheet-kpi] > div:not([data-inst]), .lp-hero [data-sheet-row] > span { transition: opacity .35s var(--ease-acorda) .6s; }
+.lp-hero [data-sheet-phone] > * { transition: opacity .4s var(--ease-acorda) .75s; }
+.lp-hero [data-inst="sheet"] [data-inst="bar"] { transition: transform .55s var(--ease-acorda); transition-delay: calc(.45s + var(--i, 0) * 42ms); }
+.lp-hero [data-sheet-chart] { transition: filter .5s var(--ease-acorda) .45s; }
+
+@media (prefers-reduced-motion: no-preference) {
+  html[data-wake="armed"] .lp-hero [data-inst="sheet"]:not(.is-awake) [data-sheet-grid] { opacity: 1; }
+  html[data-wake="armed"] .lp-hero [data-inst="sheet"]:not(.is-awake) [data-sheet-kpi],
+  html[data-wake="armed"] .lp-hero [data-inst="sheet"]:not(.is-awake) [data-sheet-panel] { background-color: transparent !important; border-color: #C2CEE0 !important; border-radius: 0 !important; }
+  html[data-wake="armed"] .lp-hero [data-inst="sheet"]:not(.is-awake) [data-sheet-kpi]:nth-child(1) { transform: translateX(1cqw); }
+  html[data-wake="armed"] .lp-hero [data-inst="sheet"]:not(.is-awake) [data-sheet-kpi]:nth-child(3) { transform: translateX(-1cqw); }
+  html[data-wake="armed"] .lp-hero [data-inst="sheet"]:not(.is-awake) [data-sheet-row] { background-color: transparent !important; }
+  html[data-wake="armed"] .lp-hero [data-inst="sheet"]:not(.is-awake) [data-sheet-ink],
+  html[data-wake="armed"] .lp-hero [data-inst="sheet"]:not(.is-awake) [data-sheet-kpi] > div:not([data-inst]),
+  html[data-wake="armed"] .lp-hero [data-inst="sheet"]:not(.is-awake) [data-sheet-row] > span { opacity: 0; }
+  html[data-wake="armed"] .lp-hero [data-inst="sheet"]:not(.is-awake) [data-sheet-phone] > * { opacity: 0; }
+  html[data-wake="armed"] .lp-hero [data-inst="sheet"]:not(.is-awake) [data-sheet-kpi] [data-inst="value"] { opacity: 1; }
+  html[data-wake="armed"] .lp-hero [data-inst="sheet"]:not(.is-awake) [data-sheet-chart] { filter: grayscale(1) brightness(.84); }
+  html[data-wake="armed"] .lp-hero [data-inst="sheet"]:not(.is-awake) [data-inst="bar"] { transform: scaleY(.26); }
+}
+
+/* ==========================================================================
+   NAV BAR — the unitech-landing-page nav (Navbar.tsx), converted to static HTML.
+   Desktop: tabs with a cyan background that slides to the section on screen and follows the pointer and focus
+   (kokonut Smooth Tab, nav mode; hero-lp.js moves it). Below 900px: the quote button + a drawer.
+   ========================================================================== */
+.lp-nav {
+  --ease-acorda: cubic-bezier(.16, 1, .3, 1);
+  color: #111;
+  font-family: 'Inter', 'Inter fallback', system-ui, -apple-system, sans-serif;
+  font-optical-sizing: auto;
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+.lp-nav [hidden] { display: none !important; }
+.lp-nav :focus-visible { outline: 2px solid #0079AE; outline-offset: 3px; }
+@media (max-width: 899.98px) { .lp-nav .desktop-only { display: none !important; } }
+@media (min-width: 900px) { .lp-nav .mobile-only { display: none !important; } }
+@media (max-width: 359.98px) { .lp-nav .cta-verb { display: none; } }   /* very narrow: just "Orçamento" */
+.lp-nav nav a { position: relative; line-height: 1.25; }
+
+/* the bar holds 44px next to the quote button; the links are 36px inside it, and ::before stretches the touch
+   target to the bar's edges. The horizontal padding shrinks so that logo, tabs and button fit at 900px. */
+.lp-nav .nav-tabs { position: relative; display: flex; align-items: center; height: 44px; padding: 3px; gap: 2px; border: 1px solid #E6ECF4; border-radius: 12px; background: rgba(255, 255, 255, .72); }
+.lp-nav .nav-tab { position: relative; z-index: 2; display: inline-flex; align-items: center; height: 100%; padding: 0 clamp(8px, 1.05vw, 14px); border-radius: 9px; color: #111; font-size: 15px; line-height: 1; font-weight: 500; white-space: nowrap; transition: color .2s var(--ease-acorda); }
+.lp-nav .nav-tab::before { content: ""; position: absolute; inset: -4px 0; }
+.lp-nav .nav-tab-fundo { position: absolute; top: 0; left: 0; z-index: 1; width: 0; height: 0; border-radius: 9px; background: #00AEEF; box-shadow: 0 6px 14px -8px rgba(0, 174, 239, .7); pointer-events: none; opacity: 0; transition: opacity .15s linear; will-change: transform; }
+.lp-nav .nav-tab-fundo.is-on { opacity: 1; }
+@media (hover: hover) { .lp-nav .nav-tab:hover { color: #0079AE; } }
+.lp-nav .nav-tab.nav-tab-ativa, .lp-nav .nav-tab.nav-tab-ativa:hover { color: #fff; }
+.lp-nav .nav-tab:focus-visible { outline-offset: 2px; }
+
+/* six tabs since "Início" joined: on narrow desktops the tabs tighten so the button keeps its one line */
+@media (min-width: 900px) and (max-width: 1079.98px) { .lp-nav .nav-tab { padding: 0 8px; font-size: 14px; } }
+.lp-nav .hover-btn-nav { flex: none; white-space: nowrap; }
+.lp-nav .hover-btn-nav { line-height: 1.2; transition: transform .13s var(--ease-acorda), box-shadow .2s var(--ease-acorda), border-color .2s, background .2s, color .2s !important; }
+@media (hover: hover) { .lp-nav .hover-btn-nav:hover { transform: translateY(-1px) !important; box-shadow: 0 10px 24px -10px rgba(0, 174, 239, .9) !important; color: #fff !important; } }
+.lp-nav .hover-btn-nav:active { transform: translateY(1px) !important; box-shadow: 0 4px 14px -8px rgba(0, 174, 239, .9) !important; }
+.lp-nav [data-menu-toggle]:active { transform: translateY(1px); }
+
+/* the drawer slides (from display:none, with @starting-style; without support it simply appears) */
+.lp-nav [data-mobile-menu] { transition: opacity .2s var(--ease-acorda), transform .2s var(--ease-acorda), display .2s allow-discrete; }
+.lp-nav [data-mobile-menu][hidden] { opacity: 0; transform: translateY(-10px); }
+@starting-style { .lp-nav [data-mobile-menu]:not([hidden]) { opacity: 0; transform: translateY(-10px); } }
+.lp-nav [data-mobile-menu] a:active { background: #F5F8FC; }

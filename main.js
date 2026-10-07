@@ -127,6 +127,8 @@ function resolveCursorLabel(target) {
   initSmoothAnchors(lenis);
   // initServices() drove the old navy services list; that section is now a static card grid.
   initStripMore();
+  initProcessFit();
+  initFooterReveal();
 
   if (motionOff) {
     document.getElementById('preloader')?.remove();
@@ -148,9 +150,38 @@ function resolveCursorLabel(target) {
   initProcess();
   initFooterParallax();
   initFooterWordmark();
+  watchLayoutShifts();
 
   window.addEventListener('load', () => ScrollTrigger.refresh());
 })();
+
+/* ── 0. RE-MEASURE WHEN THE LAYOUT SHIFTS ──
+   ScrollTrigger caches where every pinned/scrubbed section starts. The sections
+   above the carousel can still change height after that: the hero when its 3D
+   ring is re-measured (late web fonts change the word widths), Inovação when its
+   lazy image arrives, and any text when late web fonts reflow it — each one
+   leaves the carousel and the process cards firing hundreds of pixels off
+   unless positions are re-measured. */
+function watchLayoutShifts() {
+  let timer;
+  const refresh = () => { clearTimeout(timer); timer = setTimeout(() => ScrollTrigger.refresh(), 150); };
+  const watched = document.querySelectorAll('#hero, .uns-inova');
+  if (watched.length && window.ResizeObserver) {
+    const heights = new Map();
+    watched.forEach(el => heights.set(el, el.offsetHeight));
+    const ro = new ResizeObserver(entries => {
+      let changed = false;
+      entries.forEach(({ target }) => {
+        if (Math.abs(target.offsetHeight - heights.get(target)) < 2) return;
+        heights.set(target, target.offsetHeight);
+        changed = true;
+      });
+      if (changed) refresh();
+    });
+    watched.forEach(el => ro.observe(el));
+  }
+  document.fonts?.addEventListener?.('loadingdone', refresh);
+}
 
 /* ── 1. LENIS SMOOTH SCROLL ───────────────────────────── */
 function initLenis() {
@@ -223,7 +254,7 @@ function initHeroSplit() {
   return function revealHero() {
     if (played) return;
     played = true;
-    window.__unsReady = true; window.dispatchEvent(new Event('uns:ready')); // lets the ported hero start its intro
+    window.__unsReady = true; window.dispatchEvent(new Event('uns:ready')); // lets the hero start its entrance (hero-lp.js)
     const tl = gsap.timeline({ defaults: { ease: 'power4.out' } });
     groups.forEach((chars, i) => {
       if (!chars.length) return;
@@ -882,6 +913,39 @@ function initProcess() {
   }
 }
 
+/* ── 10b. PROCESS — keep tall steps readable ──
+   The step sheets stick at top: 0. On a short screen (small phone, landscape) a
+   step can be taller than the screen, and sticking at the top would hide its
+   bottom under the next step — so such a step sticks once its bottom edge
+   reaches the bottom of the screen instead. */
+function initProcessFit() {
+  const cards = document.querySelectorAll('.process-card');
+  if (!cards.length) return;
+  const fit = () => cards.forEach(card => {
+    const over = card.offsetHeight - window.innerHeight;
+    card.style.top = over > 2 ? `${-over}px` : '';
+  });
+  fit();
+  window.addEventListener('resize', fit, { passive: true });
+  if (window.ResizeObserver) {
+    const ro = new ResizeObserver(fit);
+    cards.forEach(card => ro.observe(card));
+  }
+}
+
+/* ── 10c. FOOTER REVEAL — the footer waits under the page ──
+   CSS does the reveal (position: sticky on the footer, the page above it has z-index 1).
+   This only tells CSS how tall the footer is: one that is taller than the screen is then
+   pinned by its top instead of its bottom, so all of it can still be reached. */
+function initFooterReveal() {
+  const footer = document.querySelector('.footer');
+  if (!footer) return;
+  const measure = () => footer.style.setProperty('--footer-h', footer.offsetHeight + 'px');
+  measure();
+  if (window.ResizeObserver) new ResizeObserver(measure).observe(footer);
+  else window.addEventListener('resize', measure, { passive: true });
+}
+
 /* ── 11. SERVICES — hover (desktop) or scroll (touch) activation, header reveal, live panel ── */
 function initServices(withScrollTrigger) {
   const items = document.querySelectorAll('.services__item');
@@ -969,12 +1033,25 @@ function initServices(withScrollTrigger) {
 
 /* ── 12. FOOTER — parallax wordmark + magnetic letters ── */
 function initFooterParallax() {
-  const wordmark = document.querySelector('.footer__wordmark');
-  if (!wordmark) return;
-  gsap.from(wordmark, {
-    yPercent: 26, ease: 'none',
-    scrollTrigger: { trigger: '.footer', start: 'top 70%', end: 'bottom bottom', scrub: .8 }
+  const footer = document.querySelector('.footer');
+  const page = document.getElementById('main-content');
+  if (!footer || !page) return;
+  // The footer is pinned under the page (position: sticky), so its own position says nothing.
+  // The reveal runs from the moment the page's bottom edge enters the screen until it has
+  // uncovered the footer (or a screenful of it, when the footer is taller than the screen).
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: page, start: 'bottom bottom',
+      end: () => '+=' + Math.min(footer.offsetHeight, window.innerHeight),
+      scrub: .6, invalidateOnRefresh: true
+    }
   });
+  const shade = footer.querySelector('.footer__shade');
+  if (shade) tl.fromTo(shade, { opacity: .55 }, { opacity: 0, ease: 'none' }, 0);          // comes out of the sheet's shadow
+  const rows = footer.querySelectorAll('.footer__grid, .footer__meta');
+  if (rows.length) tl.from(rows, { y: 46, ease: 'none' }, 0);                              // and rises a little as it does
+  const wordmark = footer.querySelector('.footer__end') || footer.querySelector('.footer__wordmark');   // "unitech" + the legal links under it
+  if (wordmark) tl.from(wordmark, { yPercent: 26, ease: 'none' }, 0);
 }
 
 // Splits the giant wordmark into per-letter spans and gently repels
